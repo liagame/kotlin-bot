@@ -1007,6 +1007,30 @@ public final class AiApiMessages {
      */
     lia.AiApiMessages.ObstacleOrBuilder getObstaclesOrBuilder(
         int index);
+
+    /**
+     * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+     */
+    java.util.List<lia.AiApiMessages.HQLocation> 
+        getHqLocationsList();
+    /**
+     * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+     */
+    lia.AiApiMessages.HQLocation getHqLocations(int index);
+    /**
+     * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+     */
+    int getHqLocationsCount();
+    /**
+     * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+     */
+    java.util.List<? extends lia.AiApiMessages.HQLocationOrBuilder> 
+        getHqLocationsOrBuilderList();
+    /**
+     * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+     */
+    lia.AiApiMessages.HQLocationOrBuilder getHqLocationsOrBuilder(
+        int index);
   }
   /**
    * <pre>
@@ -1028,6 +1052,7 @@ public final class AiApiMessages {
       width_ = 0F;
       height_ = 0F;
       obstacles_ = java.util.Collections.emptyList();
+      hqLocations_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -1080,6 +1105,15 @@ public final class AiApiMessages {
                   input.readMessage(lia.AiApiMessages.Obstacle.parser(), extensionRegistry));
               break;
             }
+            case 34: {
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                hqLocations_ = new java.util.ArrayList<lia.AiApiMessages.HQLocation>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              hqLocations_.add(
+                  input.readMessage(lia.AiApiMessages.HQLocation.parser(), extensionRegistry));
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -1090,6 +1124,9 @@ public final class AiApiMessages {
       } finally {
         if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
           obstacles_ = java.util.Collections.unmodifiableList(obstacles_);
+        }
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          hqLocations_ = java.util.Collections.unmodifiableList(hqLocations_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -1161,6 +1198,41 @@ public final class AiApiMessages {
       return obstacles_.get(index);
     }
 
+    public static final int HQLOCATIONS_FIELD_NUMBER = 4;
+    private java.util.List<lia.AiApiMessages.HQLocation> hqLocations_;
+    /**
+     * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+     */
+    public java.util.List<lia.AiApiMessages.HQLocation> getHqLocationsList() {
+      return hqLocations_;
+    }
+    /**
+     * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+     */
+    public java.util.List<? extends lia.AiApiMessages.HQLocationOrBuilder> 
+        getHqLocationsOrBuilderList() {
+      return hqLocations_;
+    }
+    /**
+     * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+     */
+    public int getHqLocationsCount() {
+      return hqLocations_.size();
+    }
+    /**
+     * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+     */
+    public lia.AiApiMessages.HQLocation getHqLocations(int index) {
+      return hqLocations_.get(index);
+    }
+    /**
+     * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+     */
+    public lia.AiApiMessages.HQLocationOrBuilder getHqLocationsOrBuilder(
+        int index) {
+      return hqLocations_.get(index);
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1182,6 +1254,9 @@ public final class AiApiMessages {
       for (int i = 0; i < obstacles_.size(); i++) {
         output.writeMessage(3, obstacles_.get(i));
       }
+      for (int i = 0; i < hqLocations_.size(); i++) {
+        output.writeMessage(4, hqLocations_.get(i));
+      }
       unknownFields.writeTo(output);
     }
 
@@ -1201,6 +1276,10 @@ public final class AiApiMessages {
       for (int i = 0; i < obstacles_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, obstacles_.get(i));
+      }
+      for (int i = 0; i < hqLocations_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, hqLocations_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1228,6 +1307,8 @@ public final class AiApiMessages {
               other.getHeight()));
       result = result && getObstaclesList()
           .equals(other.getObstaclesList());
+      result = result && getHqLocationsList()
+          .equals(other.getHqLocationsList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -1248,6 +1329,10 @@ public final class AiApiMessages {
       if (getObstaclesCount() > 0) {
         hash = (37 * hash) + OBSTACLES_FIELD_NUMBER;
         hash = (53 * hash) + getObstaclesList().hashCode();
+      }
+      if (getHqLocationsCount() > 0) {
+        hash = (37 * hash) + HQLOCATIONS_FIELD_NUMBER;
+        hash = (53 * hash) + getHqLocationsList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -1379,6 +1464,7 @@ public final class AiApiMessages {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
           getObstaclesFieldBuilder();
+          getHqLocationsFieldBuilder();
         }
       }
       public Builder clear() {
@@ -1392,6 +1478,12 @@ public final class AiApiMessages {
           bitField0_ = (bitField0_ & ~0x00000004);
         } else {
           obstaclesBuilder_.clear();
+        }
+        if (hqLocationsBuilder_ == null) {
+          hqLocations_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+        } else {
+          hqLocationsBuilder_.clear();
         }
         return this;
       }
@@ -1427,6 +1519,15 @@ public final class AiApiMessages {
           result.obstacles_ = obstacles_;
         } else {
           result.obstacles_ = obstaclesBuilder_.build();
+        }
+        if (hqLocationsBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            hqLocations_ = java.util.Collections.unmodifiableList(hqLocations_);
+            bitField0_ = (bitField0_ & ~0x00000008);
+          }
+          result.hqLocations_ = hqLocations_;
+        } else {
+          result.hqLocations_ = hqLocationsBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -1499,6 +1600,32 @@ public final class AiApiMessages {
                    getObstaclesFieldBuilder() : null;
             } else {
               obstaclesBuilder_.addAllMessages(other.obstacles_);
+            }
+          }
+        }
+        if (hqLocationsBuilder_ == null) {
+          if (!other.hqLocations_.isEmpty()) {
+            if (hqLocations_.isEmpty()) {
+              hqLocations_ = other.hqLocations_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+            } else {
+              ensureHqLocationsIsMutable();
+              hqLocations_.addAll(other.hqLocations_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.hqLocations_.isEmpty()) {
+            if (hqLocationsBuilder_.isEmpty()) {
+              hqLocationsBuilder_.dispose();
+              hqLocationsBuilder_ = null;
+              hqLocations_ = other.hqLocations_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+              hqLocationsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getHqLocationsFieldBuilder() : null;
+            } else {
+              hqLocationsBuilder_.addAllMessages(other.hqLocations_);
             }
           }
         }
@@ -1821,6 +1948,246 @@ public final class AiApiMessages {
         }
         return obstaclesBuilder_;
       }
+
+      private java.util.List<lia.AiApiMessages.HQLocation> hqLocations_ =
+        java.util.Collections.emptyList();
+      private void ensureHqLocationsIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          hqLocations_ = new java.util.ArrayList<lia.AiApiMessages.HQLocation>(hqLocations_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          lia.AiApiMessages.HQLocation, lia.AiApiMessages.HQLocation.Builder, lia.AiApiMessages.HQLocationOrBuilder> hqLocationsBuilder_;
+
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public java.util.List<lia.AiApiMessages.HQLocation> getHqLocationsList() {
+        if (hqLocationsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(hqLocations_);
+        } else {
+          return hqLocationsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public int getHqLocationsCount() {
+        if (hqLocationsBuilder_ == null) {
+          return hqLocations_.size();
+        } else {
+          return hqLocationsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public lia.AiApiMessages.HQLocation getHqLocations(int index) {
+        if (hqLocationsBuilder_ == null) {
+          return hqLocations_.get(index);
+        } else {
+          return hqLocationsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public Builder setHqLocations(
+          int index, lia.AiApiMessages.HQLocation value) {
+        if (hqLocationsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureHqLocationsIsMutable();
+          hqLocations_.set(index, value);
+          onChanged();
+        } else {
+          hqLocationsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public Builder setHqLocations(
+          int index, lia.AiApiMessages.HQLocation.Builder builderForValue) {
+        if (hqLocationsBuilder_ == null) {
+          ensureHqLocationsIsMutable();
+          hqLocations_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          hqLocationsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public Builder addHqLocations(lia.AiApiMessages.HQLocation value) {
+        if (hqLocationsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureHqLocationsIsMutable();
+          hqLocations_.add(value);
+          onChanged();
+        } else {
+          hqLocationsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public Builder addHqLocations(
+          int index, lia.AiApiMessages.HQLocation value) {
+        if (hqLocationsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureHqLocationsIsMutable();
+          hqLocations_.add(index, value);
+          onChanged();
+        } else {
+          hqLocationsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public Builder addHqLocations(
+          lia.AiApiMessages.HQLocation.Builder builderForValue) {
+        if (hqLocationsBuilder_ == null) {
+          ensureHqLocationsIsMutable();
+          hqLocations_.add(builderForValue.build());
+          onChanged();
+        } else {
+          hqLocationsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public Builder addHqLocations(
+          int index, lia.AiApiMessages.HQLocation.Builder builderForValue) {
+        if (hqLocationsBuilder_ == null) {
+          ensureHqLocationsIsMutable();
+          hqLocations_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          hqLocationsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public Builder addAllHqLocations(
+          java.lang.Iterable<? extends lia.AiApiMessages.HQLocation> values) {
+        if (hqLocationsBuilder_ == null) {
+          ensureHqLocationsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, hqLocations_);
+          onChanged();
+        } else {
+          hqLocationsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public Builder clearHqLocations() {
+        if (hqLocationsBuilder_ == null) {
+          hqLocations_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+          onChanged();
+        } else {
+          hqLocationsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public Builder removeHqLocations(int index) {
+        if (hqLocationsBuilder_ == null) {
+          ensureHqLocationsIsMutable();
+          hqLocations_.remove(index);
+          onChanged();
+        } else {
+          hqLocationsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public lia.AiApiMessages.HQLocation.Builder getHqLocationsBuilder(
+          int index) {
+        return getHqLocationsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public lia.AiApiMessages.HQLocationOrBuilder getHqLocationsOrBuilder(
+          int index) {
+        if (hqLocationsBuilder_ == null) {
+          return hqLocations_.get(index);  } else {
+          return hqLocationsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public java.util.List<? extends lia.AiApiMessages.HQLocationOrBuilder> 
+           getHqLocationsOrBuilderList() {
+        if (hqLocationsBuilder_ != null) {
+          return hqLocationsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(hqLocations_);
+        }
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public lia.AiApiMessages.HQLocation.Builder addHqLocationsBuilder() {
+        return getHqLocationsFieldBuilder().addBuilder(
+            lia.AiApiMessages.HQLocation.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public lia.AiApiMessages.HQLocation.Builder addHqLocationsBuilder(
+          int index) {
+        return getHqLocationsFieldBuilder().addBuilder(
+            index, lia.AiApiMessages.HQLocation.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .lia.HQLocation hqLocations = 4;</code>
+       */
+      public java.util.List<lia.AiApiMessages.HQLocation.Builder> 
+           getHqLocationsBuilderList() {
+        return getHqLocationsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          lia.AiApiMessages.HQLocation, lia.AiApiMessages.HQLocation.Builder, lia.AiApiMessages.HQLocationOrBuilder> 
+          getHqLocationsFieldBuilder() {
+        if (hqLocationsBuilder_ == null) {
+          hqLocationsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              lia.AiApiMessages.HQLocation, lia.AiApiMessages.HQLocation.Builder, lia.AiApiMessages.HQLocationOrBuilder>(
+                  hqLocations_,
+                  ((bitField0_ & 0x00000008) == 0x00000008),
+                  getParentForChildren(),
+                  isClean());
+          hqLocations_ = null;
+        }
+        return hqLocationsBuilder_;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
@@ -1880,25 +2247,38 @@ public final class AiApiMessages {
     float getTime();
 
     /**
-     * <code>repeated .lia.Player players = 2;</code>
+     * <code>.lia.Headquarters headquarters = 2;</code>
+     */
+    boolean hasHeadquarters();
+    /**
+     * <code>.lia.Headquarters headquarters = 2;</code>
+     */
+    lia.AiApiMessages.Headquarters getHeadquarters();
+    /**
+     * <code>.lia.Headquarters headquarters = 2;</code>
+     */
+    lia.AiApiMessages.HeadquartersOrBuilder getHeadquartersOrBuilder();
+
+    /**
+     * <code>repeated .lia.Player players = 3;</code>
      */
     java.util.List<lia.AiApiMessages.Player> 
         getPlayersList();
     /**
-     * <code>repeated .lia.Player players = 2;</code>
+     * <code>repeated .lia.Player players = 3;</code>
      */
     lia.AiApiMessages.Player getPlayers(int index);
     /**
-     * <code>repeated .lia.Player players = 2;</code>
+     * <code>repeated .lia.Player players = 3;</code>
      */
     int getPlayersCount();
     /**
-     * <code>repeated .lia.Player players = 2;</code>
+     * <code>repeated .lia.Player players = 3;</code>
      */
     java.util.List<? extends lia.AiApiMessages.PlayerOrBuilder> 
         getPlayersOrBuilderList();
     /**
-     * <code>repeated .lia.Player players = 2;</code>
+     * <code>repeated .lia.Player players = 3;</code>
      */
     lia.AiApiMessages.PlayerOrBuilder getPlayersOrBuilder(
         int index);
@@ -1961,9 +2341,22 @@ public final class AiApiMessages {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              lia.AiApiMessages.Headquarters.Builder subBuilder = null;
+              if (headquarters_ != null) {
+                subBuilder = headquarters_.toBuilder();
+              }
+              headquarters_ = input.readMessage(lia.AiApiMessages.Headquarters.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(headquarters_);
+                headquarters_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 26: {
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
                 players_ = new java.util.ArrayList<lia.AiApiMessages.Player>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000004;
               }
               players_.add(
                   input.readMessage(lia.AiApiMessages.Player.parser(), extensionRegistry));
@@ -1977,7 +2370,7 @@ public final class AiApiMessages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
           players_ = java.util.Collections.unmodifiableList(players_);
         }
         this.unknownFields = unknownFields.build();
@@ -2006,35 +2399,56 @@ public final class AiApiMessages {
       return time_;
     }
 
-    public static final int PLAYERS_FIELD_NUMBER = 2;
+    public static final int HEADQUARTERS_FIELD_NUMBER = 2;
+    private lia.AiApiMessages.Headquarters headquarters_;
+    /**
+     * <code>.lia.Headquarters headquarters = 2;</code>
+     */
+    public boolean hasHeadquarters() {
+      return headquarters_ != null;
+    }
+    /**
+     * <code>.lia.Headquarters headquarters = 2;</code>
+     */
+    public lia.AiApiMessages.Headquarters getHeadquarters() {
+      return headquarters_ == null ? lia.AiApiMessages.Headquarters.getDefaultInstance() : headquarters_;
+    }
+    /**
+     * <code>.lia.Headquarters headquarters = 2;</code>
+     */
+    public lia.AiApiMessages.HeadquartersOrBuilder getHeadquartersOrBuilder() {
+      return getHeadquarters();
+    }
+
+    public static final int PLAYERS_FIELD_NUMBER = 3;
     private java.util.List<lia.AiApiMessages.Player> players_;
     /**
-     * <code>repeated .lia.Player players = 2;</code>
+     * <code>repeated .lia.Player players = 3;</code>
      */
     public java.util.List<lia.AiApiMessages.Player> getPlayersList() {
       return players_;
     }
     /**
-     * <code>repeated .lia.Player players = 2;</code>
+     * <code>repeated .lia.Player players = 3;</code>
      */
     public java.util.List<? extends lia.AiApiMessages.PlayerOrBuilder> 
         getPlayersOrBuilderList() {
       return players_;
     }
     /**
-     * <code>repeated .lia.Player players = 2;</code>
+     * <code>repeated .lia.Player players = 3;</code>
      */
     public int getPlayersCount() {
       return players_.size();
     }
     /**
-     * <code>repeated .lia.Player players = 2;</code>
+     * <code>repeated .lia.Player players = 3;</code>
      */
     public lia.AiApiMessages.Player getPlayers(int index) {
       return players_.get(index);
     }
     /**
-     * <code>repeated .lia.Player players = 2;</code>
+     * <code>repeated .lia.Player players = 3;</code>
      */
     public lia.AiApiMessages.PlayerOrBuilder getPlayersOrBuilder(
         int index) {
@@ -2056,8 +2470,11 @@ public final class AiApiMessages {
       if (time_ != 0F) {
         output.writeFloat(1, time_);
       }
+      if (headquarters_ != null) {
+        output.writeMessage(2, getHeadquarters());
+      }
       for (int i = 0; i < players_.size(); i++) {
-        output.writeMessage(2, players_.get(i));
+        output.writeMessage(3, players_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -2071,9 +2488,13 @@ public final class AiApiMessages {
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(1, time_);
       }
+      if (headquarters_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getHeadquarters());
+      }
       for (int i = 0; i < players_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, players_.get(i));
+          .computeMessageSize(3, players_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2095,6 +2516,11 @@ public final class AiApiMessages {
           java.lang.Float.floatToIntBits(getTime())
           == java.lang.Float.floatToIntBits(
               other.getTime()));
+      result = result && (hasHeadquarters() == other.hasHeadquarters());
+      if (hasHeadquarters()) {
+        result = result && getHeadquarters()
+            .equals(other.getHeadquarters());
+      }
       result = result && getPlayersList()
           .equals(other.getPlayersList());
       result = result && unknownFields.equals(other.unknownFields);
@@ -2111,6 +2537,10 @@ public final class AiApiMessages {
       hash = (37 * hash) + TIME_FIELD_NUMBER;
       hash = (53 * hash) + java.lang.Float.floatToIntBits(
           getTime());
+      if (hasHeadquarters()) {
+        hash = (37 * hash) + HEADQUARTERS_FIELD_NUMBER;
+        hash = (53 * hash) + getHeadquarters().hashCode();
+      }
       if (getPlayersCount() > 0) {
         hash = (37 * hash) + PLAYERS_FIELD_NUMBER;
         hash = (53 * hash) + getPlayersList().hashCode();
@@ -2251,9 +2681,15 @@ public final class AiApiMessages {
         super.clear();
         time_ = 0F;
 
+        if (headquartersBuilder_ == null) {
+          headquarters_ = null;
+        } else {
+          headquarters_ = null;
+          headquartersBuilder_ = null;
+        }
         if (playersBuilder_ == null) {
           players_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000004);
         } else {
           playersBuilder_.clear();
         }
@@ -2282,10 +2718,15 @@ public final class AiApiMessages {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         result.time_ = time_;
+        if (headquartersBuilder_ == null) {
+          result.headquarters_ = headquarters_;
+        } else {
+          result.headquarters_ = headquartersBuilder_.build();
+        }
         if (playersBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
             players_ = java.util.Collections.unmodifiableList(players_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000004);
           }
           result.players_ = players_;
         } else {
@@ -2336,11 +2777,14 @@ public final class AiApiMessages {
         if (other.getTime() != 0F) {
           setTime(other.getTime());
         }
+        if (other.hasHeadquarters()) {
+          mergeHeadquarters(other.getHeadquarters());
+        }
         if (playersBuilder_ == null) {
           if (!other.players_.isEmpty()) {
             if (players_.isEmpty()) {
               players_ = other.players_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000004);
             } else {
               ensurePlayersIsMutable();
               players_.addAll(other.players_);
@@ -2353,7 +2797,7 @@ public final class AiApiMessages {
               playersBuilder_.dispose();
               playersBuilder_ = null;
               players_ = other.players_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000004);
               playersBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getPlayersFieldBuilder() : null;
@@ -2416,12 +2860,129 @@ public final class AiApiMessages {
         return this;
       }
 
+      private lia.AiApiMessages.Headquarters headquarters_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          lia.AiApiMessages.Headquarters, lia.AiApiMessages.Headquarters.Builder, lia.AiApiMessages.HeadquartersOrBuilder> headquartersBuilder_;
+      /**
+       * <code>.lia.Headquarters headquarters = 2;</code>
+       */
+      public boolean hasHeadquarters() {
+        return headquartersBuilder_ != null || headquarters_ != null;
+      }
+      /**
+       * <code>.lia.Headquarters headquarters = 2;</code>
+       */
+      public lia.AiApiMessages.Headquarters getHeadquarters() {
+        if (headquartersBuilder_ == null) {
+          return headquarters_ == null ? lia.AiApiMessages.Headquarters.getDefaultInstance() : headquarters_;
+        } else {
+          return headquartersBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.lia.Headquarters headquarters = 2;</code>
+       */
+      public Builder setHeadquarters(lia.AiApiMessages.Headquarters value) {
+        if (headquartersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          headquarters_ = value;
+          onChanged();
+        } else {
+          headquartersBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.lia.Headquarters headquarters = 2;</code>
+       */
+      public Builder setHeadquarters(
+          lia.AiApiMessages.Headquarters.Builder builderForValue) {
+        if (headquartersBuilder_ == null) {
+          headquarters_ = builderForValue.build();
+          onChanged();
+        } else {
+          headquartersBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.lia.Headquarters headquarters = 2;</code>
+       */
+      public Builder mergeHeadquarters(lia.AiApiMessages.Headquarters value) {
+        if (headquartersBuilder_ == null) {
+          if (headquarters_ != null) {
+            headquarters_ =
+              lia.AiApiMessages.Headquarters.newBuilder(headquarters_).mergeFrom(value).buildPartial();
+          } else {
+            headquarters_ = value;
+          }
+          onChanged();
+        } else {
+          headquartersBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.lia.Headquarters headquarters = 2;</code>
+       */
+      public Builder clearHeadquarters() {
+        if (headquartersBuilder_ == null) {
+          headquarters_ = null;
+          onChanged();
+        } else {
+          headquarters_ = null;
+          headquartersBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.lia.Headquarters headquarters = 2;</code>
+       */
+      public lia.AiApiMessages.Headquarters.Builder getHeadquartersBuilder() {
+        
+        onChanged();
+        return getHeadquartersFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.lia.Headquarters headquarters = 2;</code>
+       */
+      public lia.AiApiMessages.HeadquartersOrBuilder getHeadquartersOrBuilder() {
+        if (headquartersBuilder_ != null) {
+          return headquartersBuilder_.getMessageOrBuilder();
+        } else {
+          return headquarters_ == null ?
+              lia.AiApiMessages.Headquarters.getDefaultInstance() : headquarters_;
+        }
+      }
+      /**
+       * <code>.lia.Headquarters headquarters = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          lia.AiApiMessages.Headquarters, lia.AiApiMessages.Headquarters.Builder, lia.AiApiMessages.HeadquartersOrBuilder> 
+          getHeadquartersFieldBuilder() {
+        if (headquartersBuilder_ == null) {
+          headquartersBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              lia.AiApiMessages.Headquarters, lia.AiApiMessages.Headquarters.Builder, lia.AiApiMessages.HeadquartersOrBuilder>(
+                  getHeadquarters(),
+                  getParentForChildren(),
+                  isClean());
+          headquarters_ = null;
+        }
+        return headquartersBuilder_;
+      }
+
       private java.util.List<lia.AiApiMessages.Player> players_ =
         java.util.Collections.emptyList();
       private void ensurePlayersIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
           players_ = new java.util.ArrayList<lia.AiApiMessages.Player>(players_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000004;
          }
       }
 
@@ -2429,7 +2990,7 @@ public final class AiApiMessages {
           lia.AiApiMessages.Player, lia.AiApiMessages.Player.Builder, lia.AiApiMessages.PlayerOrBuilder> playersBuilder_;
 
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public java.util.List<lia.AiApiMessages.Player> getPlayersList() {
         if (playersBuilder_ == null) {
@@ -2439,7 +3000,7 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public int getPlayersCount() {
         if (playersBuilder_ == null) {
@@ -2449,7 +3010,7 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public lia.AiApiMessages.Player getPlayers(int index) {
         if (playersBuilder_ == null) {
@@ -2459,7 +3020,7 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public Builder setPlayers(
           int index, lia.AiApiMessages.Player value) {
@@ -2476,7 +3037,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public Builder setPlayers(
           int index, lia.AiApiMessages.Player.Builder builderForValue) {
@@ -2490,7 +3051,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public Builder addPlayers(lia.AiApiMessages.Player value) {
         if (playersBuilder_ == null) {
@@ -2506,7 +3067,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public Builder addPlayers(
           int index, lia.AiApiMessages.Player value) {
@@ -2523,7 +3084,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public Builder addPlayers(
           lia.AiApiMessages.Player.Builder builderForValue) {
@@ -2537,7 +3098,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public Builder addPlayers(
           int index, lia.AiApiMessages.Player.Builder builderForValue) {
@@ -2551,7 +3112,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public Builder addAllPlayers(
           java.lang.Iterable<? extends lia.AiApiMessages.Player> values) {
@@ -2566,12 +3127,12 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public Builder clearPlayers() {
         if (playersBuilder_ == null) {
           players_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000004);
           onChanged();
         } else {
           playersBuilder_.clear();
@@ -2579,7 +3140,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public Builder removePlayers(int index) {
         if (playersBuilder_ == null) {
@@ -2592,14 +3153,14 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public lia.AiApiMessages.Player.Builder getPlayersBuilder(
           int index) {
         return getPlayersFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public lia.AiApiMessages.PlayerOrBuilder getPlayersOrBuilder(
           int index) {
@@ -2609,7 +3170,7 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public java.util.List<? extends lia.AiApiMessages.PlayerOrBuilder> 
            getPlayersOrBuilderList() {
@@ -2620,14 +3181,14 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public lia.AiApiMessages.Player.Builder addPlayersBuilder() {
         return getPlayersFieldBuilder().addBuilder(
             lia.AiApiMessages.Player.getDefaultInstance());
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public lia.AiApiMessages.Player.Builder addPlayersBuilder(
           int index) {
@@ -2635,7 +3196,7 @@ public final class AiApiMessages {
             index, lia.AiApiMessages.Player.getDefaultInstance());
       }
       /**
-       * <code>repeated .lia.Player players = 2;</code>
+       * <code>repeated .lia.Player players = 3;</code>
        */
       public java.util.List<lia.AiApiMessages.Player.Builder> 
            getPlayersBuilderList() {
@@ -2648,7 +3209,7 @@ public final class AiApiMessages {
           playersBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               lia.AiApiMessages.Player, lia.AiApiMessages.Player.Builder, lia.AiApiMessages.PlayerOrBuilder>(
                   players_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000004) == 0x00000004),
                   getParentForChildren(),
                   isClean());
           players_ = null;
@@ -5297,6 +5858,1844 @@ public final class AiApiMessages {
 
   }
 
+  public interface HQLocationOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:lia.HQLocation)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>float x = 1;</code>
+     */
+    float getX();
+
+    /**
+     * <code>float y = 2;</code>
+     */
+    float getY();
+  }
+  /**
+   * Protobuf type {@code lia.HQLocation}
+   */
+  public  static final class HQLocation extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:lia.HQLocation)
+      HQLocationOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use HQLocation.newBuilder() to construct.
+    private HQLocation(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private HQLocation() {
+      x_ = 0F;
+      y_ = 0F;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private HQLocation(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 13: {
+
+              x_ = input.readFloat();
+              break;
+            }
+            case 21: {
+
+              y_ = input.readFloat();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return lia.AiApiMessages.internal_static_lia_HQLocation_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return lia.AiApiMessages.internal_static_lia_HQLocation_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              lia.AiApiMessages.HQLocation.class, lia.AiApiMessages.HQLocation.Builder.class);
+    }
+
+    public static final int X_FIELD_NUMBER = 1;
+    private float x_;
+    /**
+     * <code>float x = 1;</code>
+     */
+    public float getX() {
+      return x_;
+    }
+
+    public static final int Y_FIELD_NUMBER = 2;
+    private float y_;
+    /**
+     * <code>float y = 2;</code>
+     */
+    public float getY() {
+      return y_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (x_ != 0F) {
+        output.writeFloat(1, x_);
+      }
+      if (y_ != 0F) {
+        output.writeFloat(2, y_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (x_ != 0F) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(1, x_);
+      }
+      if (y_ != 0F) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(2, y_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof lia.AiApiMessages.HQLocation)) {
+        return super.equals(obj);
+      }
+      lia.AiApiMessages.HQLocation other = (lia.AiApiMessages.HQLocation) obj;
+
+      boolean result = true;
+      result = result && (
+          java.lang.Float.floatToIntBits(getX())
+          == java.lang.Float.floatToIntBits(
+              other.getX()));
+      result = result && (
+          java.lang.Float.floatToIntBits(getY())
+          == java.lang.Float.floatToIntBits(
+              other.getY()));
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + X_FIELD_NUMBER;
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
+          getX());
+      hash = (37 * hash) + Y_FIELD_NUMBER;
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
+          getY());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static lia.AiApiMessages.HQLocation parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static lia.AiApiMessages.HQLocation parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static lia.AiApiMessages.HQLocation parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static lia.AiApiMessages.HQLocation parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static lia.AiApiMessages.HQLocation parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static lia.AiApiMessages.HQLocation parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static lia.AiApiMessages.HQLocation parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static lia.AiApiMessages.HQLocation parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static lia.AiApiMessages.HQLocation parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static lia.AiApiMessages.HQLocation parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static lia.AiApiMessages.HQLocation parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static lia.AiApiMessages.HQLocation parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(lia.AiApiMessages.HQLocation prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code lia.HQLocation}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:lia.HQLocation)
+        lia.AiApiMessages.HQLocationOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return lia.AiApiMessages.internal_static_lia_HQLocation_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return lia.AiApiMessages.internal_static_lia_HQLocation_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                lia.AiApiMessages.HQLocation.class, lia.AiApiMessages.HQLocation.Builder.class);
+      }
+
+      // Construct using lia.AiApiMessages.HQLocation.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        x_ = 0F;
+
+        y_ = 0F;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return lia.AiApiMessages.internal_static_lia_HQLocation_descriptor;
+      }
+
+      public lia.AiApiMessages.HQLocation getDefaultInstanceForType() {
+        return lia.AiApiMessages.HQLocation.getDefaultInstance();
+      }
+
+      public lia.AiApiMessages.HQLocation build() {
+        lia.AiApiMessages.HQLocation result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public lia.AiApiMessages.HQLocation buildPartial() {
+        lia.AiApiMessages.HQLocation result = new lia.AiApiMessages.HQLocation(this);
+        result.x_ = x_;
+        result.y_ = y_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof lia.AiApiMessages.HQLocation) {
+          return mergeFrom((lia.AiApiMessages.HQLocation)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(lia.AiApiMessages.HQLocation other) {
+        if (other == lia.AiApiMessages.HQLocation.getDefaultInstance()) return this;
+        if (other.getX() != 0F) {
+          setX(other.getX());
+        }
+        if (other.getY() != 0F) {
+          setY(other.getY());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        lia.AiApiMessages.HQLocation parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (lia.AiApiMessages.HQLocation) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private float x_ ;
+      /**
+       * <code>float x = 1;</code>
+       */
+      public float getX() {
+        return x_;
+      }
+      /**
+       * <code>float x = 1;</code>
+       */
+      public Builder setX(float value) {
+        
+        x_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float x = 1;</code>
+       */
+      public Builder clearX() {
+        
+        x_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private float y_ ;
+      /**
+       * <code>float y = 2;</code>
+       */
+      public float getY() {
+        return y_;
+      }
+      /**
+       * <code>float y = 2;</code>
+       */
+      public Builder setY(float value) {
+        
+        y_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float y = 2;</code>
+       */
+      public Builder clearY() {
+        
+        y_ = 0F;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:lia.HQLocation)
+    }
+
+    // @@protoc_insertion_point(class_scope:lia.HQLocation)
+    private static final lia.AiApiMessages.HQLocation DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new lia.AiApiMessages.HQLocation();
+    }
+
+    public static lia.AiApiMessages.HQLocation getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<HQLocation>
+        PARSER = new com.google.protobuf.AbstractParser<HQLocation>() {
+      public HQLocation parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new HQLocation(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<HQLocation> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<HQLocation> getParserForType() {
+      return PARSER;
+    }
+
+    public lia.AiApiMessages.HQLocation getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface HeadquartersOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:lia.Headquarters)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.lia.HQStatus.Enum status = 1;</code>
+     */
+    int getStatusValue();
+    /**
+     * <code>.lia.HQStatus.Enum status = 1;</code>
+     */
+    lia.AiApiMessages.HQStatus.Enum getStatus();
+
+    /**
+     * <code>.lia.HQLocation location = 2;</code>
+     */
+    boolean hasLocation();
+    /**
+     * <code>.lia.HQLocation location = 2;</code>
+     */
+    lia.AiApiMessages.HQLocation getLocation();
+    /**
+     * <code>.lia.HQLocation location = 2;</code>
+     */
+    lia.AiApiMessages.HQLocationOrBuilder getLocationOrBuilder();
+
+    /**
+     * <code>float timeToCapture = 3;</code>
+     */
+    float getTimeToCapture();
+
+    /**
+     * <code>float timeToDestroy = 4;</code>
+     */
+    float getTimeToDestroy();
+  }
+  /**
+   * Protobuf type {@code lia.Headquarters}
+   */
+  public  static final class Headquarters extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:lia.Headquarters)
+      HeadquartersOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Headquarters.newBuilder() to construct.
+    private Headquarters(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Headquarters() {
+      status_ = 0;
+      timeToCapture_ = 0F;
+      timeToDestroy_ = 0F;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Headquarters(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              int rawValue = input.readEnum();
+
+              status_ = rawValue;
+              break;
+            }
+            case 18: {
+              lia.AiApiMessages.HQLocation.Builder subBuilder = null;
+              if (location_ != null) {
+                subBuilder = location_.toBuilder();
+              }
+              location_ = input.readMessage(lia.AiApiMessages.HQLocation.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(location_);
+                location_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 29: {
+
+              timeToCapture_ = input.readFloat();
+              break;
+            }
+            case 37: {
+
+              timeToDestroy_ = input.readFloat();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return lia.AiApiMessages.internal_static_lia_Headquarters_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return lia.AiApiMessages.internal_static_lia_Headquarters_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              lia.AiApiMessages.Headquarters.class, lia.AiApiMessages.Headquarters.Builder.class);
+    }
+
+    public static final int STATUS_FIELD_NUMBER = 1;
+    private int status_;
+    /**
+     * <code>.lia.HQStatus.Enum status = 1;</code>
+     */
+    public int getStatusValue() {
+      return status_;
+    }
+    /**
+     * <code>.lia.HQStatus.Enum status = 1;</code>
+     */
+    public lia.AiApiMessages.HQStatus.Enum getStatus() {
+      lia.AiApiMessages.HQStatus.Enum result = lia.AiApiMessages.HQStatus.Enum.valueOf(status_);
+      return result == null ? lia.AiApiMessages.HQStatus.Enum.UNRECOGNIZED : result;
+    }
+
+    public static final int LOCATION_FIELD_NUMBER = 2;
+    private lia.AiApiMessages.HQLocation location_;
+    /**
+     * <code>.lia.HQLocation location = 2;</code>
+     */
+    public boolean hasLocation() {
+      return location_ != null;
+    }
+    /**
+     * <code>.lia.HQLocation location = 2;</code>
+     */
+    public lia.AiApiMessages.HQLocation getLocation() {
+      return location_ == null ? lia.AiApiMessages.HQLocation.getDefaultInstance() : location_;
+    }
+    /**
+     * <code>.lia.HQLocation location = 2;</code>
+     */
+    public lia.AiApiMessages.HQLocationOrBuilder getLocationOrBuilder() {
+      return getLocation();
+    }
+
+    public static final int TIMETOCAPTURE_FIELD_NUMBER = 3;
+    private float timeToCapture_;
+    /**
+     * <code>float timeToCapture = 3;</code>
+     */
+    public float getTimeToCapture() {
+      return timeToCapture_;
+    }
+
+    public static final int TIMETODESTROY_FIELD_NUMBER = 4;
+    private float timeToDestroy_;
+    /**
+     * <code>float timeToDestroy = 4;</code>
+     */
+    public float getTimeToDestroy() {
+      return timeToDestroy_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (status_ != lia.AiApiMessages.HQStatus.Enum.UNKNOWN.getNumber()) {
+        output.writeEnum(1, status_);
+      }
+      if (location_ != null) {
+        output.writeMessage(2, getLocation());
+      }
+      if (timeToCapture_ != 0F) {
+        output.writeFloat(3, timeToCapture_);
+      }
+      if (timeToDestroy_ != 0F) {
+        output.writeFloat(4, timeToDestroy_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (status_ != lia.AiApiMessages.HQStatus.Enum.UNKNOWN.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, status_);
+      }
+      if (location_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getLocation());
+      }
+      if (timeToCapture_ != 0F) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(3, timeToCapture_);
+      }
+      if (timeToDestroy_ != 0F) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(4, timeToDestroy_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof lia.AiApiMessages.Headquarters)) {
+        return super.equals(obj);
+      }
+      lia.AiApiMessages.Headquarters other = (lia.AiApiMessages.Headquarters) obj;
+
+      boolean result = true;
+      result = result && status_ == other.status_;
+      result = result && (hasLocation() == other.hasLocation());
+      if (hasLocation()) {
+        result = result && getLocation()
+            .equals(other.getLocation());
+      }
+      result = result && (
+          java.lang.Float.floatToIntBits(getTimeToCapture())
+          == java.lang.Float.floatToIntBits(
+              other.getTimeToCapture()));
+      result = result && (
+          java.lang.Float.floatToIntBits(getTimeToDestroy())
+          == java.lang.Float.floatToIntBits(
+              other.getTimeToDestroy()));
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + status_;
+      if (hasLocation()) {
+        hash = (37 * hash) + LOCATION_FIELD_NUMBER;
+        hash = (53 * hash) + getLocation().hashCode();
+      }
+      hash = (37 * hash) + TIMETOCAPTURE_FIELD_NUMBER;
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
+          getTimeToCapture());
+      hash = (37 * hash) + TIMETODESTROY_FIELD_NUMBER;
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
+          getTimeToDestroy());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static lia.AiApiMessages.Headquarters parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static lia.AiApiMessages.Headquarters parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static lia.AiApiMessages.Headquarters parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static lia.AiApiMessages.Headquarters parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static lia.AiApiMessages.Headquarters parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static lia.AiApiMessages.Headquarters parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static lia.AiApiMessages.Headquarters parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static lia.AiApiMessages.Headquarters parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static lia.AiApiMessages.Headquarters parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static lia.AiApiMessages.Headquarters parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static lia.AiApiMessages.Headquarters parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static lia.AiApiMessages.Headquarters parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(lia.AiApiMessages.Headquarters prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code lia.Headquarters}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:lia.Headquarters)
+        lia.AiApiMessages.HeadquartersOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return lia.AiApiMessages.internal_static_lia_Headquarters_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return lia.AiApiMessages.internal_static_lia_Headquarters_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                lia.AiApiMessages.Headquarters.class, lia.AiApiMessages.Headquarters.Builder.class);
+      }
+
+      // Construct using lia.AiApiMessages.Headquarters.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        status_ = 0;
+
+        if (locationBuilder_ == null) {
+          location_ = null;
+        } else {
+          location_ = null;
+          locationBuilder_ = null;
+        }
+        timeToCapture_ = 0F;
+
+        timeToDestroy_ = 0F;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return lia.AiApiMessages.internal_static_lia_Headquarters_descriptor;
+      }
+
+      public lia.AiApiMessages.Headquarters getDefaultInstanceForType() {
+        return lia.AiApiMessages.Headquarters.getDefaultInstance();
+      }
+
+      public lia.AiApiMessages.Headquarters build() {
+        lia.AiApiMessages.Headquarters result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public lia.AiApiMessages.Headquarters buildPartial() {
+        lia.AiApiMessages.Headquarters result = new lia.AiApiMessages.Headquarters(this);
+        result.status_ = status_;
+        if (locationBuilder_ == null) {
+          result.location_ = location_;
+        } else {
+          result.location_ = locationBuilder_.build();
+        }
+        result.timeToCapture_ = timeToCapture_;
+        result.timeToDestroy_ = timeToDestroy_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof lia.AiApiMessages.Headquarters) {
+          return mergeFrom((lia.AiApiMessages.Headquarters)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(lia.AiApiMessages.Headquarters other) {
+        if (other == lia.AiApiMessages.Headquarters.getDefaultInstance()) return this;
+        if (other.status_ != 0) {
+          setStatusValue(other.getStatusValue());
+        }
+        if (other.hasLocation()) {
+          mergeLocation(other.getLocation());
+        }
+        if (other.getTimeToCapture() != 0F) {
+          setTimeToCapture(other.getTimeToCapture());
+        }
+        if (other.getTimeToDestroy() != 0F) {
+          setTimeToDestroy(other.getTimeToDestroy());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        lia.AiApiMessages.Headquarters parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (lia.AiApiMessages.Headquarters) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int status_ = 0;
+      /**
+       * <code>.lia.HQStatus.Enum status = 1;</code>
+       */
+      public int getStatusValue() {
+        return status_;
+      }
+      /**
+       * <code>.lia.HQStatus.Enum status = 1;</code>
+       */
+      public Builder setStatusValue(int value) {
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.lia.HQStatus.Enum status = 1;</code>
+       */
+      public lia.AiApiMessages.HQStatus.Enum getStatus() {
+        lia.AiApiMessages.HQStatus.Enum result = lia.AiApiMessages.HQStatus.Enum.valueOf(status_);
+        return result == null ? lia.AiApiMessages.HQStatus.Enum.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.lia.HQStatus.Enum status = 1;</code>
+       */
+      public Builder setStatus(lia.AiApiMessages.HQStatus.Enum value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        status_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.lia.HQStatus.Enum status = 1;</code>
+       */
+      public Builder clearStatus() {
+        
+        status_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private lia.AiApiMessages.HQLocation location_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          lia.AiApiMessages.HQLocation, lia.AiApiMessages.HQLocation.Builder, lia.AiApiMessages.HQLocationOrBuilder> locationBuilder_;
+      /**
+       * <code>.lia.HQLocation location = 2;</code>
+       */
+      public boolean hasLocation() {
+        return locationBuilder_ != null || location_ != null;
+      }
+      /**
+       * <code>.lia.HQLocation location = 2;</code>
+       */
+      public lia.AiApiMessages.HQLocation getLocation() {
+        if (locationBuilder_ == null) {
+          return location_ == null ? lia.AiApiMessages.HQLocation.getDefaultInstance() : location_;
+        } else {
+          return locationBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.lia.HQLocation location = 2;</code>
+       */
+      public Builder setLocation(lia.AiApiMessages.HQLocation value) {
+        if (locationBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          location_ = value;
+          onChanged();
+        } else {
+          locationBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.lia.HQLocation location = 2;</code>
+       */
+      public Builder setLocation(
+          lia.AiApiMessages.HQLocation.Builder builderForValue) {
+        if (locationBuilder_ == null) {
+          location_ = builderForValue.build();
+          onChanged();
+        } else {
+          locationBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.lia.HQLocation location = 2;</code>
+       */
+      public Builder mergeLocation(lia.AiApiMessages.HQLocation value) {
+        if (locationBuilder_ == null) {
+          if (location_ != null) {
+            location_ =
+              lia.AiApiMessages.HQLocation.newBuilder(location_).mergeFrom(value).buildPartial();
+          } else {
+            location_ = value;
+          }
+          onChanged();
+        } else {
+          locationBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.lia.HQLocation location = 2;</code>
+       */
+      public Builder clearLocation() {
+        if (locationBuilder_ == null) {
+          location_ = null;
+          onChanged();
+        } else {
+          location_ = null;
+          locationBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.lia.HQLocation location = 2;</code>
+       */
+      public lia.AiApiMessages.HQLocation.Builder getLocationBuilder() {
+        
+        onChanged();
+        return getLocationFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.lia.HQLocation location = 2;</code>
+       */
+      public lia.AiApiMessages.HQLocationOrBuilder getLocationOrBuilder() {
+        if (locationBuilder_ != null) {
+          return locationBuilder_.getMessageOrBuilder();
+        } else {
+          return location_ == null ?
+              lia.AiApiMessages.HQLocation.getDefaultInstance() : location_;
+        }
+      }
+      /**
+       * <code>.lia.HQLocation location = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          lia.AiApiMessages.HQLocation, lia.AiApiMessages.HQLocation.Builder, lia.AiApiMessages.HQLocationOrBuilder> 
+          getLocationFieldBuilder() {
+        if (locationBuilder_ == null) {
+          locationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              lia.AiApiMessages.HQLocation, lia.AiApiMessages.HQLocation.Builder, lia.AiApiMessages.HQLocationOrBuilder>(
+                  getLocation(),
+                  getParentForChildren(),
+                  isClean());
+          location_ = null;
+        }
+        return locationBuilder_;
+      }
+
+      private float timeToCapture_ ;
+      /**
+       * <code>float timeToCapture = 3;</code>
+       */
+      public float getTimeToCapture() {
+        return timeToCapture_;
+      }
+      /**
+       * <code>float timeToCapture = 3;</code>
+       */
+      public Builder setTimeToCapture(float value) {
+        
+        timeToCapture_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float timeToCapture = 3;</code>
+       */
+      public Builder clearTimeToCapture() {
+        
+        timeToCapture_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private float timeToDestroy_ ;
+      /**
+       * <code>float timeToDestroy = 4;</code>
+       */
+      public float getTimeToDestroy() {
+        return timeToDestroy_;
+      }
+      /**
+       * <code>float timeToDestroy = 4;</code>
+       */
+      public Builder setTimeToDestroy(float value) {
+        
+        timeToDestroy_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float timeToDestroy = 4;</code>
+       */
+      public Builder clearTimeToDestroy() {
+        
+        timeToDestroy_ = 0F;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:lia.Headquarters)
+    }
+
+    // @@protoc_insertion_point(class_scope:lia.Headquarters)
+    private static final lia.AiApiMessages.Headquarters DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new lia.AiApiMessages.Headquarters();
+    }
+
+    public static lia.AiApiMessages.Headquarters getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Headquarters>
+        PARSER = new com.google.protobuf.AbstractParser<Headquarters>() {
+      public Headquarters parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Headquarters(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Headquarters> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Headquarters> getParserForType() {
+      return PARSER;
+    }
+
+    public lia.AiApiMessages.Headquarters getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface HQStatusOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:lia.HQStatus)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code lia.HQStatus}
+   */
+  public  static final class HQStatus extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:lia.HQStatus)
+      HQStatusOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use HQStatus.newBuilder() to construct.
+    private HQStatus(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private HQStatus() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private HQStatus(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return lia.AiApiMessages.internal_static_lia_HQStatus_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return lia.AiApiMessages.internal_static_lia_HQStatus_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              lia.AiApiMessages.HQStatus.class, lia.AiApiMessages.HQStatus.Builder.class);
+    }
+
+    /**
+     * Protobuf enum {@code lia.HQStatus.Enum}
+     */
+    public enum Enum
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>UNKNOWN = 0;</code>
+       */
+      UNKNOWN(0),
+      /**
+       * <code>INACTIVE = 1;</code>
+       */
+      INACTIVE(1),
+      /**
+       * <code>CAPTURE = 2;</code>
+       */
+      CAPTURE(2),
+      /**
+       * <code>DEFEND = 3;</code>
+       */
+      DEFEND(3),
+      /**
+       * <code>DESTROY = 4;</code>
+       */
+      DESTROY(4),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>UNKNOWN = 0;</code>
+       */
+      public static final int UNKNOWN_VALUE = 0;
+      /**
+       * <code>INACTIVE = 1;</code>
+       */
+      public static final int INACTIVE_VALUE = 1;
+      /**
+       * <code>CAPTURE = 2;</code>
+       */
+      public static final int CAPTURE_VALUE = 2;
+      /**
+       * <code>DEFEND = 3;</code>
+       */
+      public static final int DEFEND_VALUE = 3;
+      /**
+       * <code>DESTROY = 4;</code>
+       */
+      public static final int DESTROY_VALUE = 4;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static Enum valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static Enum forNumber(int value) {
+        switch (value) {
+          case 0: return UNKNOWN;
+          case 1: return INACTIVE;
+          case 2: return CAPTURE;
+          case 3: return DEFEND;
+          case 4: return DESTROY;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Enum>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Enum> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Enum>() {
+              public Enum findValueByNumber(int number) {
+                return Enum.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return lia.AiApiMessages.HQStatus.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final Enum[] VALUES = values();
+
+      public static Enum valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private Enum(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:lia.HQStatus.Enum)
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof lia.AiApiMessages.HQStatus)) {
+        return super.equals(obj);
+      }
+      lia.AiApiMessages.HQStatus other = (lia.AiApiMessages.HQStatus) obj;
+
+      boolean result = true;
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static lia.AiApiMessages.HQStatus parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static lia.AiApiMessages.HQStatus parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static lia.AiApiMessages.HQStatus parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static lia.AiApiMessages.HQStatus parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static lia.AiApiMessages.HQStatus parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static lia.AiApiMessages.HQStatus parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static lia.AiApiMessages.HQStatus parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static lia.AiApiMessages.HQStatus parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static lia.AiApiMessages.HQStatus parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static lia.AiApiMessages.HQStatus parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static lia.AiApiMessages.HQStatus parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static lia.AiApiMessages.HQStatus parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(lia.AiApiMessages.HQStatus prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code lia.HQStatus}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:lia.HQStatus)
+        lia.AiApiMessages.HQStatusOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return lia.AiApiMessages.internal_static_lia_HQStatus_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return lia.AiApiMessages.internal_static_lia_HQStatus_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                lia.AiApiMessages.HQStatus.class, lia.AiApiMessages.HQStatus.Builder.class);
+      }
+
+      // Construct using lia.AiApiMessages.HQStatus.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return lia.AiApiMessages.internal_static_lia_HQStatus_descriptor;
+      }
+
+      public lia.AiApiMessages.HQStatus getDefaultInstanceForType() {
+        return lia.AiApiMessages.HQStatus.getDefaultInstance();
+      }
+
+      public lia.AiApiMessages.HQStatus build() {
+        lia.AiApiMessages.HQStatus result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public lia.AiApiMessages.HQStatus buildPartial() {
+        lia.AiApiMessages.HQStatus result = new lia.AiApiMessages.HQStatus(this);
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof lia.AiApiMessages.HQStatus) {
+          return mergeFrom((lia.AiApiMessages.HQStatus)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(lia.AiApiMessages.HQStatus other) {
+        if (other == lia.AiApiMessages.HQStatus.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        lia.AiApiMessages.HQStatus parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (lia.AiApiMessages.HQStatus) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:lia.HQStatus)
+    }
+
+    // @@protoc_insertion_point(class_scope:lia.HQStatus)
+    private static final lia.AiApiMessages.HQStatus DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new lia.AiApiMessages.HQStatus();
+    }
+
+    public static lia.AiApiMessages.HQStatus getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<HQStatus>
+        PARSER = new com.google.protobuf.AbstractParser<HQStatus>() {
+      public HQStatus parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new HQStatus(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<HQStatus> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<HQStatus> getParserForType() {
+      return PARSER;
+    }
+
+    public lia.AiApiMessages.HQStatus getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface PlayerOrBuilder extends
       // @@protoc_insertion_point(interface_extends:lia.Player)
       com.google.protobuf.MessageOrBuilder {
@@ -7219,9 +9618,13 @@ public final class AiApiMessages {
        */
       NONE(1),
       /**
-       * <code>FULL_SPEED = 2;</code>
+       * <code>FORWARD = 2;</code>
        */
-      FULL_SPEED(2),
+      FORWARD(2),
+      /**
+       * <code>BACKWARD = 3;</code>
+       */
+      BACKWARD(3),
       UNRECOGNIZED(-1),
       ;
 
@@ -7238,9 +9641,13 @@ public final class AiApiMessages {
        */
       public static final int NONE_VALUE = 1;
       /**
-       * <code>FULL_SPEED = 2;</code>
+       * <code>FORWARD = 2;</code>
        */
-      public static final int FULL_SPEED_VALUE = 2;
+      public static final int FORWARD_VALUE = 2;
+      /**
+       * <code>BACKWARD = 3;</code>
+       */
+      public static final int BACKWARD_VALUE = 3;
 
 
       public final int getNumber() {
@@ -7263,7 +9670,8 @@ public final class AiApiMessages {
         switch (value) {
           case 0: return UNKNOWN;
           case 1: return NONE;
-          case 2: return FULL_SPEED;
+          case 2: return FORWARD;
+          case 3: return BACKWARD;
           default: return null;
         }
       }
@@ -11113,6 +13521,21 @@ public final class AiApiMessages {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_lia_Obstacle_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_lia_HQLocation_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_lia_HQLocation_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_lia_Headquarters_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_lia_Headquarters_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_lia_HQStatus_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_lia_HQStatus_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_lia_Player_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -11164,36 +13587,45 @@ public final class AiApiMessages {
       "\n\014ai_api.proto\022\003lia\"i\n\007Message\022\013\n\003uid\030\001 " +
       "\001(\004\022\037\n\007mapData\030\002 \001(\0132\014.lia.MapDataH\000\022\'\n\013" +
       "stateUpdate\030\003 \001(\0132\020.lia.StateUpdateH\000B\007\n" +
-      "\005types\"J\n\007MapData\022\r\n\005width\030\001 \001(\002\022\016\n\006heig" +
+      "\005types\"p\n\007MapData\022\r\n\005width\030\001 \001(\002\022\016\n\006heig" +
       "ht\030\002 \001(\002\022 \n\tobstacles\030\003 \003(\0132\r.lia.Obstac" +
-      "le\"9\n\013StateUpdate\022\014\n\004time\030\001 \001(\002\022\034\n\007playe" +
-      "rs\030\002 \003(\0132\013.lia.Player\"=\n\nAiResponse\022\013\n\003u" +
-      "id\030\001 \001(\004\022\"\n\006events\030\002 \003(\0132\022.lia.ResponseE" +
-      "vent\"\234\001\n\rResponseEvent\0222\n\016setThrustSpeed" +
-      "\030\001 \001(\0132\030.lia.SetThrustSpeedEventH\000\022,\n\013se" +
-      "tRotation\030\002 \001(\0132\025.lia.SetRotationEventH\000" +
-      "\022 \n\005shoot\030\003 \001(\0132\017.lia.ShootEventH\000B\007\n\005ev" +
-      "ent\"?\n\010Obstacle\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\r\n" +
-      "\005width\030\003 \001(\002\022\016\n\006height\030\004 \001(\002\"\213\002\n\006Player\022" +
-      "\n\n\002id\030\001 \001(\005\022\016\n\006health\030\002 \001(\005\022\t\n\001x\030\003 \001(\002\022\t" +
-      "\n\001y\030\004 \001(\002\022\023\n\013orientation\030\005 \001(\002\022*\n\013thrust" +
-      "Speed\030\006 \001(\0162\025.lia.ThrustSpeed.Enum\022$\n\010ro" +
-      "tation\030\007 \001(\0162\022.lia.Rotation.Enum\022\024\n\014weap" +
-      "onLoaded\030\010 \001(\010\022&\n\017opponentsInView\030\t \003(\0132" +
-      "\r.lia.Opponent\022*\n\025opponentBulletsInView\030" +
-      "\n \003(\0132\013.lia.Bullet\"<\n\013ThrustSpeed\"-\n\004Enu" +
-      "m\022\013\n\007UNKNOWN\020\000\022\010\n\004NONE\020\001\022\016\n\nFULL_SPEED\020\002" +
-      "\">\n\010Rotation\"2\n\004Enum\022\013\n\007UNKNOWN\020\000\022\010\n\004NON" +
-      "E\020\001\022\010\n\004LEFT\020\002\022\t\n\005RIGHT\020\003\"Q\n\010Opponent\022\n\n\002" +
-      "id\030\001 \001(\005\022\016\n\006health\030\002 \001(\005\022\t\n\001x\030\003 \001(\002\022\t\n\001y" +
-      "\030\004 \001(\002\022\023\n\013orientation\030\005 \001(\002\"E\n\006Bullet\022\t\n" +
-      "\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\023\n\013orientation\030\003 \001(\002" +
-      "\022\020\n\010velocity\030\004 \001(\002\"M\n\023SetThrustSpeedEven" +
-      "t\022\020\n\010playerId\030\001 \001(\005\022$\n\005speed\030\002 \001(\0162\025.lia" +
-      ".ThrustSpeed.Enum\"J\n\020SetRotationEvent\022\020\n" +
-      "\010playerId\030\001 \001(\005\022$\n\010rotation\030\002 \001(\0162\022.lia." +
-      "Rotation.Enum\"\036\n\nShootEvent\022\020\n\010playerId\030" +
-      "\001 \001(\005B\024\n\003liaB\rAiApiMessagesb\006proto3"
+      "le\022$\n\013hqLocations\030\004 \003(\0132\017.lia.HQLocation" +
+      "\"b\n\013StateUpdate\022\014\n\004time\030\001 \001(\002\022\'\n\014headqua" +
+      "rters\030\002 \001(\0132\021.lia.Headquarters\022\034\n\007player" +
+      "s\030\003 \003(\0132\013.lia.Player\"=\n\nAiResponse\022\013\n\003ui" +
+      "d\030\001 \001(\004\022\"\n\006events\030\002 \003(\0132\022.lia.ResponseEv" +
+      "ent\"\234\001\n\rResponseEvent\0222\n\016setThrustSpeed\030" +
+      "\001 \001(\0132\030.lia.SetThrustSpeedEventH\000\022,\n\013set" +
+      "Rotation\030\002 \001(\0132\025.lia.SetRotationEventH\000\022" +
+      " \n\005shoot\030\003 \001(\0132\017.lia.ShootEventH\000B\007\n\005eve" +
+      "nt\"?\n\010Obstacle\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\r\n\005" +
+      "width\030\003 \001(\002\022\016\n\006height\030\004 \001(\002\"\"\n\nHQLocatio" +
+      "n\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\"\203\001\n\014Headquarters" +
+      "\022\"\n\006status\030\001 \001(\0162\022.lia.HQStatus.Enum\022!\n\010" +
+      "location\030\002 \001(\0132\017.lia.HQLocation\022\025\n\rtimeT" +
+      "oCapture\030\003 \001(\002\022\025\n\rtimeToDestroy\030\004 \001(\002\"S\n" +
+      "\010HQStatus\"G\n\004Enum\022\013\n\007UNKNOWN\020\000\022\014\n\010INACTI" +
+      "VE\020\001\022\013\n\007CAPTURE\020\002\022\n\n\006DEFEND\020\003\022\013\n\007DESTROY" +
+      "\020\004\"\213\002\n\006Player\022\n\n\002id\030\001 \001(\005\022\016\n\006health\030\002 \001(" +
+      "\005\022\t\n\001x\030\003 \001(\002\022\t\n\001y\030\004 \001(\002\022\023\n\013orientation\030\005" +
+      " \001(\002\022*\n\013thrustSpeed\030\006 \001(\0162\025.lia.ThrustSp" +
+      "eed.Enum\022$\n\010rotation\030\007 \001(\0162\022.lia.Rotatio" +
+      "n.Enum\022\024\n\014weaponLoaded\030\010 \001(\010\022&\n\017opponent" +
+      "sInView\030\t \003(\0132\r.lia.Opponent\022*\n\025opponent" +
+      "BulletsInView\030\n \003(\0132\013.lia.Bullet\"G\n\013Thru" +
+      "stSpeed\"8\n\004Enum\022\013\n\007UNKNOWN\020\000\022\010\n\004NONE\020\001\022\013" +
+      "\n\007FORWARD\020\002\022\014\n\010BACKWARD\020\003\">\n\010Rotation\"2\n" +
+      "\004Enum\022\013\n\007UNKNOWN\020\000\022\010\n\004NONE\020\001\022\010\n\004LEFT\020\002\022\t" +
+      "\n\005RIGHT\020\003\"Q\n\010Opponent\022\n\n\002id\030\001 \001(\005\022\016\n\006hea" +
+      "lth\030\002 \001(\005\022\t\n\001x\030\003 \001(\002\022\t\n\001y\030\004 \001(\002\022\023\n\013orien" +
+      "tation\030\005 \001(\002\"E\n\006Bullet\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002" +
+      " \001(\002\022\023\n\013orientation\030\003 \001(\002\022\020\n\010velocity\030\004 " +
+      "\001(\002\"M\n\023SetThrustSpeedEvent\022\020\n\010playerId\030\001" +
+      " \001(\005\022$\n\005speed\030\002 \001(\0162\025.lia.ThrustSpeed.En" +
+      "um\"J\n\020SetRotationEvent\022\020\n\010playerId\030\001 \001(\005" +
+      "\022$\n\010rotation\030\002 \001(\0162\022.lia.Rotation.Enum\"\036" +
+      "\n\nShootEvent\022\020\n\010playerId\030\001 \001(\005B\024\n\003liaB\rA" +
+      "iApiMessagesb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -11218,13 +13650,13 @@ public final class AiApiMessages {
     internal_static_lia_MapData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_MapData_descriptor,
-        new java.lang.String[] { "Width", "Height", "Obstacles", });
+        new java.lang.String[] { "Width", "Height", "Obstacles", "HqLocations", });
     internal_static_lia_StateUpdate_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_lia_StateUpdate_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_StateUpdate_descriptor,
-        new java.lang.String[] { "Time", "Players", });
+        new java.lang.String[] { "Time", "Headquarters", "Players", });
     internal_static_lia_AiResponse_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_lia_AiResponse_fieldAccessorTable = new
@@ -11243,50 +13675,68 @@ public final class AiApiMessages {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_Obstacle_descriptor,
         new java.lang.String[] { "X", "Y", "Width", "Height", });
-    internal_static_lia_Player_descriptor =
+    internal_static_lia_HQLocation_descriptor =
       getDescriptor().getMessageTypes().get(6);
+    internal_static_lia_HQLocation_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_lia_HQLocation_descriptor,
+        new java.lang.String[] { "X", "Y", });
+    internal_static_lia_Headquarters_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_lia_Headquarters_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_lia_Headquarters_descriptor,
+        new java.lang.String[] { "Status", "Location", "TimeToCapture", "TimeToDestroy", });
+    internal_static_lia_HQStatus_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_lia_HQStatus_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_lia_HQStatus_descriptor,
+        new java.lang.String[] { });
+    internal_static_lia_Player_descriptor =
+      getDescriptor().getMessageTypes().get(9);
     internal_static_lia_Player_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_Player_descriptor,
         new java.lang.String[] { "Id", "Health", "X", "Y", "Orientation", "ThrustSpeed", "Rotation", "WeaponLoaded", "OpponentsInView", "OpponentBulletsInView", });
     internal_static_lia_ThrustSpeed_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_lia_ThrustSpeed_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_ThrustSpeed_descriptor,
         new java.lang.String[] { });
     internal_static_lia_Rotation_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_lia_Rotation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_Rotation_descriptor,
         new java.lang.String[] { });
     internal_static_lia_Opponent_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_lia_Opponent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_Opponent_descriptor,
         new java.lang.String[] { "Id", "Health", "X", "Y", "Orientation", });
     internal_static_lia_Bullet_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_lia_Bullet_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_Bullet_descriptor,
         new java.lang.String[] { "X", "Y", "Orientation", "Velocity", });
     internal_static_lia_SetThrustSpeedEvent_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_lia_SetThrustSpeedEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_SetThrustSpeedEvent_descriptor,
         new java.lang.String[] { "PlayerId", "Speed", });
     internal_static_lia_SetRotationEvent_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_lia_SetRotationEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_SetRotationEvent_descriptor,
         new java.lang.String[] { "PlayerId", "Rotation", });
     internal_static_lia_ShootEvent_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_lia_ShootEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_ShootEvent_descriptor,
