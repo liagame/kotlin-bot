@@ -2260,25 +2260,25 @@ public final class AiApiMessages {
     lia.AiApiMessages.HeadquartersOrBuilder getHeadquartersOrBuilder();
 
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.MyPlayer players = 3;</code>
      */
     java.util.List<lia.AiApiMessages.Player> 
         getPlayersList();
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.MyPlayer players = 3;</code>
      */
     lia.AiApiMessages.Player getPlayers(int index);
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.MyPlayer players = 3;</code>
      */
     int getPlayersCount();
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.MyPlayer players = 3;</code>
      */
     java.util.List<? extends lia.AiApiMessages.PlayerOrBuilder> 
         getPlayersOrBuilderList();
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.MyPlayer players = 3;</code>
      */
     lia.AiApiMessages.PlayerOrBuilder getPlayersOrBuilder(
         int index);
@@ -2423,32 +2423,32 @@ public final class AiApiMessages {
     public static final int PLAYERS_FIELD_NUMBER = 3;
     private java.util.List<lia.AiApiMessages.Player> players_;
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.MyPlayer players = 3;</code>
      */
     public java.util.List<lia.AiApiMessages.Player> getPlayersList() {
       return players_;
     }
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.MyPlayer players = 3;</code>
      */
     public java.util.List<? extends lia.AiApiMessages.PlayerOrBuilder> 
         getPlayersOrBuilderList() {
       return players_;
     }
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.MyPlayer players = 3;</code>
      */
     public int getPlayersCount() {
       return players_.size();
     }
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.MyPlayer players = 3;</code>
      */
     public lia.AiApiMessages.Player getPlayers(int index) {
       return players_.get(index);
     }
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.MyPlayer players = 3;</code>
      */
     public lia.AiApiMessages.PlayerOrBuilder getPlayersOrBuilder(
         int index) {
@@ -2990,7 +2990,7 @@ public final class AiApiMessages {
           lia.AiApiMessages.Player, lia.AiApiMessages.Player.Builder, lia.AiApiMessages.PlayerOrBuilder> playersBuilder_;
 
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public java.util.List<lia.AiApiMessages.Player> getPlayersList() {
         if (playersBuilder_ == null) {
@@ -3000,7 +3000,7 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public int getPlayersCount() {
         if (playersBuilder_ == null) {
@@ -3010,7 +3010,7 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public lia.AiApiMessages.Player getPlayers(int index) {
         if (playersBuilder_ == null) {
@@ -3020,7 +3020,7 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public Builder setPlayers(
           int index, lia.AiApiMessages.Player value) {
@@ -3037,7 +3037,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public Builder setPlayers(
           int index, lia.AiApiMessages.Player.Builder builderForValue) {
@@ -3051,7 +3051,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public Builder addPlayers(lia.AiApiMessages.Player value) {
         if (playersBuilder_ == null) {
@@ -3067,7 +3067,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public Builder addPlayers(
           int index, lia.AiApiMessages.Player value) {
@@ -3084,7 +3084,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public Builder addPlayers(
           lia.AiApiMessages.Player.Builder builderForValue) {
@@ -3098,7 +3098,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public Builder addPlayers(
           int index, lia.AiApiMessages.Player.Builder builderForValue) {
@@ -3112,7 +3112,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public Builder addAllPlayers(
           java.lang.Iterable<? extends lia.AiApiMessages.Player> values) {
@@ -3127,7 +3127,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public Builder clearPlayers() {
         if (playersBuilder_ == null) {
@@ -3140,7 +3140,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public Builder removePlayers(int index) {
         if (playersBuilder_ == null) {
@@ -3153,14 +3153,14 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public lia.AiApiMessages.Player.Builder getPlayersBuilder(
           int index) {
         return getPlayersFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public lia.AiApiMessages.PlayerOrBuilder getPlayersOrBuilder(
           int index) {
@@ -3170,7 +3170,7 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public java.util.List<? extends lia.AiApiMessages.PlayerOrBuilder> 
            getPlayersOrBuilderList() {
@@ -3181,14 +3181,14 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public lia.AiApiMessages.Player.Builder addPlayersBuilder() {
         return getPlayersFieldBuilder().addBuilder(
             lia.AiApiMessages.Player.getDefaultInstance());
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public lia.AiApiMessages.Player.Builder addPlayersBuilder(
           int index) {
@@ -3196,7 +3196,7 @@ public final class AiApiMessages {
             index, lia.AiApiMessages.Player.getDefaultInstance());
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.MyPlayer players = 3;</code>
        */
       public java.util.List<lia.AiApiMessages.Player.Builder> 
            getPlayersBuilderList() {
@@ -7697,7 +7697,7 @@ public final class AiApiMessages {
   }
 
   public interface PlayerOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:lia.Player)
+      // @@protoc_insertion_point(interface_extends:lia.MyPlayer)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -7821,14 +7821,14 @@ public final class AiApiMessages {
         int index);
   }
   /**
-   * Protobuf type {@code lia.Player}
+   * Protobuf type {@code lia.MyPlayer}
    */
   public  static final class Player extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:lia.Player)
+      // @@protoc_insertion_point(message_implements:lia.MyPlayer)
       PlayerOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use Player.newBuilder() to construct.
+    // Use MyPlayer.newBuilder() to construct.
     private Player(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
@@ -8410,11 +8410,11 @@ public final class AiApiMessages {
       return builder;
     }
     /**
-     * Protobuf type {@code lia.Player}
+     * Protobuf type {@code lia.MyPlayer}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:lia.Player)
+        // @@protoc_insertion_point(builder_implements:lia.MyPlayer)
         lia.AiApiMessages.PlayerOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
@@ -8428,7 +8428,7 @@ public final class AiApiMessages {
                 lia.AiApiMessages.Player.class, lia.AiApiMessages.Player.Builder.class);
       }
 
-      // Construct using lia.AiApiMessages.Player.newBuilder()
+      // Construct using lia.AiApiMessages.MyPlayer.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -9489,10 +9489,10 @@ public final class AiApiMessages {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:lia.Player)
+      // @@protoc_insertion_point(builder_scope:lia.MyPlayer)
     }
 
-    // @@protoc_insertion_point(class_scope:lia.Player)
+    // @@protoc_insertion_point(class_scope:lia.MyPlayer)
     private static final lia.AiApiMessages.Player DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new lia.AiApiMessages.Player();
@@ -13592,7 +13592,7 @@ public final class AiApiMessages {
       "le\022$\n\013hqLocations\030\004 \003(\0132\017.lia.HQLocation" +
       "\"b\n\013StateUpdate\022\014\n\004time\030\001 \001(\002\022\'\n\014headqua" +
       "rters\030\002 \001(\0132\021.lia.Headquarters\022\034\n\007player" +
-      "s\030\003 \003(\0132\013.lia.Player\"=\n\nAiResponse\022\013\n\003ui" +
+      "s\030\003 \003(\0132\013.lia.MyPlayer\"=\n\nAiResponse\022\013\n\003ui" +
       "d\030\001 \001(\004\022\"\n\006events\030\002 \003(\0132\022.lia.ResponseEv" +
       "ent\"\234\001\n\rResponseEvent\0222\n\016setThrustSpeed\030" +
       "\001 \001(\0132\030.lia.SetThrustSpeedEventH\000\022,\n\013set" +

@@ -1,66 +1,79 @@
+import com.adamldavis.pathfinder.PathGrid
+import com.adamldavis.pathfinder.SimplePathGrid
 import lia.AiApiMessages.*
 import lia.Callable
 import lia.NetworkingClient
 import lia.Response
-import java.util.Random
+import helpers.MyPlayer
+import helpers.Timer
 
 /**
  * Place to write the logic for your bots.
  */
 class MyBot : Callable {
 
-    private var counter: Long = 0
-    private val random = Random(15)
+    val PLAYER_RADIUS = 1
 
-    /** Called only once when the game is initialized.  */
+    lateinit var grid: PathGrid
+
+    private val players = HashMap<Int, MyPlayer>()
+    private var timer = Timer()
+
     @Synchronized override fun process(mapData: MapData) {
-        System.out.println(mapData)
-    }
 
-    /** Repeatedly called from game engine with game status updates.   */
-    @Synchronized override fun process(stateUpdate: StateUpdate, response: Response) {
-        /*
-        * This is a sample code that moves players randomly and shoots when the
-        * opponent is in sight.
-        **/
+        grid = SimplePathGrid(120, 67)
 
-        val players = stateUpdate.getPlayersList()
-
-        for (player in players) {
-            val id = player.getId()
-
-            // Rotation and thrust speed
-            if (counter % 10 == 0L || counter % 11 == 0L) {
-
-                // Handle rotation
-                var rand = random.nextFloat()
-                if (rand < 0.4)
-                    response.setRotationSpeed(id, Rotation.Enum.LEFT)
-                else if (rand < 0.8)
-                    response.setRotationSpeed(id, Rotation.Enum.RIGHT)
-                else
-                    response.setRotationSpeed(id, Rotation.Enum.NONE)
-
-                // Handle thrust speed
-                rand = random.nextFloat()
-                if (rand < 0.9) {
-                    response.setThrustSpeed(id, ThrustSpeed.Enum.FULL_SPEED)
-                } else {
-                    response.setThrustSpeed(id, ThrustSpeed.Enum.NONE)
+        for (obstacle in mapData.obstaclesList) {
+            // Width
+            val xStart = obstacle.x.toInt() - PLAYER_RADIUS
+            val xEnd = (obstacle.x + obstacle.width).toInt() + PLAYER_RADIUS
+            for (x in xStart until xEnd) {
+                // height
+                val yStart = obstacle.y.toInt() - PLAYER_RADIUS
+                val yEnd = (obstacle.y + obstacle.height).toInt() + PLAYER_RADIUS
+                for (y in yStart until yEnd) {
+                    if (x < grid.width && y < grid.height && x >= 0 && y >= 0) {
+                        grid.setGrid(x, y, true)
+                    }
                 }
             }
-            counter++
+        }
+    }
 
-            // Shoot
-            if (player.getWeaponLoaded() && player.getOpponentsInViewCount() > 0)
-                response.shoot(id)
+    @Synchronized override fun process(stateUpdate: StateUpdate, response: Response) {
+        timer.time += stateUpdate.time
+
+        // Initialize players
+        if (players.size == 0) {
+            for (player in stateUpdate.playersList) {
+                players[player.id] = MyPlayer(grid, players, player.id, timer)
+            }
+        }
+
+        // Tell bots they are dead
+        for ((_, player) in players) {
+            var found = false
+            for (playerData in stateUpdate.playersList) {
+                if (player.id == playerData.id) {
+                    found = true
+                    break
+                }
+            }
+            if (!found) {
+                player.isDead = true
+            }
+        }
+
+        // Process player
+        for (playerData in stateUpdate.playersList) {
+            val player = players[playerData.id]!!
+            player.update(playerData, stateUpdate.headquarters, response, stateUpdate)
         }
     }
 
     companion object {
         @JvmStatic fun main(args: Array<String>) {
             NetworkingClient.connectNew(args, MyBot())
-            //NetworkingClient.connectNew(args, new MyBot());
         }
     }
 }
