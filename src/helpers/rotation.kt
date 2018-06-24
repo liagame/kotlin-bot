@@ -1,10 +1,12 @@
 package helpers
 
 import com.badlogic.gdx.math.Vector2
-import lia.AiApiMessages
-import lia.Response
+import lia.Api
+import lia.Player
+import lia.Rotation
+import lia.ThrustSpeed
 
-fun rotateToAngle(playerState: AiApiMessages.Player, p1: Vector2, p2: Vector2, response: Response): Boolean {
+fun rotateToAngle(playerState: Player, p1: Vector2, p2: Vector2, api: Api): Boolean {
 
     val playerAngle = Math.toDegrees(playerState.orientation.toDouble()) % 360
 
@@ -18,16 +20,16 @@ fun rotateToAngle(playerState: AiApiMessages.Player, p1: Vector2, p2: Vector2, r
         else -> angle
     }
 
-    if (kotlin.math.abs(angle) < 5) {
-        response.setRotationSpeed(playerState.id, AiApiMessages.Rotation.Enum.NONE)
+    if (kotlin.math.abs(angle) < 15) {
+        api.setRotationSpeed(playerState.id, Rotation.NONE)
         return true
     }
 
     when {
-        angle < 0f -> response.setRotationSpeed(playerState.id, AiApiMessages.Rotation.Enum.LEFT)
-        else -> response.setRotationSpeed(playerState.id, AiApiMessages.Rotation.Enum.RIGHT)
+        angle < 0f -> api.setRotationSpeed(playerState.id, Rotation.LEFT)
+        else -> api.setRotationSpeed(playerState.id, Rotation.RIGHT)
     }
-    response.setThrustSpeed(playerState.id, AiApiMessages.ThrustSpeed.Enum.NONE)
+    api.setThrustSpeed(playerState.id, ThrustSpeed.NONE)
 
     return false
 }

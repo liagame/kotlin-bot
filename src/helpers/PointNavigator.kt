@@ -4,8 +4,7 @@ import com.adamldavis.pathfinder.AntPathFinder
 import com.adamldavis.pathfinder.PathGrid
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
-import lia.AiApiMessages
-import lia.Response
+import lia.*
 import java.util.concurrent.LinkedBlockingQueue
 
 class PointNavigator(val grid: PathGrid, val p1: Vector2, var p2: Vector2) {
@@ -132,21 +131,21 @@ class PointNavigator(val grid: PathGrid, val p1: Vector2, var p2: Vector2) {
     fun getLastPoint() = path.last()
 
 
-    fun follow(playerState: AiApiMessages.Player, response: Response): Boolean {
+    fun follow(playerState: Player, api: Api): Boolean {
         val x = playerState.x
         val y = playerState.y
         val id = playerState.id
 
         val nextPoint = path.peek() ?: return true
 
-        val rotated = rotateToAngle(playerState, Vector2(x, y), nextPoint, response)
+        val rotated = rotateToAngle(playerState, Vector2(x, y), nextPoint, api)
         if (rotated) {
             if (kotlin.math.abs(nextPoint.x - x) < 2f &&
                     kotlin.math.abs(nextPoint.y - y) < 2f) {
                 path.poll()
             }
             // move forward
-            response.setThrustSpeed(id, AiApiMessages.ThrustSpeed.Enum.FORWARD)
+            api.setThrustSpeed(id, ThrustSpeed.FORWARD)
         }
 
         return false

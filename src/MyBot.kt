@@ -1,11 +1,8 @@
 import com.adamldavis.pathfinder.PathGrid
 import com.adamldavis.pathfinder.SimplePathGrid
-import lia.AiApiMessages.*
-import lia.Callable
-import lia.NetworkingClient
-import lia.Response
 import helpers.MyPlayer
 import helpers.Timer
+import lia.*
 
 /**
  * Place to write the logic for your bots.
@@ -23,7 +20,7 @@ class MyBot : Callable {
 
         grid = SimplePathGrid(120, 67)
 
-        for (obstacle in mapData.obstaclesList) {
+        for (obstacle in mapData.obstacles) {
             // Width
             val xStart = obstacle.x.toInt() - PLAYER_RADIUS
             val xEnd = (obstacle.x + obstacle.width).toInt() + PLAYER_RADIUS
@@ -40,12 +37,13 @@ class MyBot : Callable {
         }
     }
 
-    @Synchronized override fun process(stateUpdate: StateUpdate, response: Response) {
-        timer.time += stateUpdate.time
+    @Synchronized override fun process(stateUpdate: StateUpdate, api: Api) {
+
+        timer.time = stateUpdate.time
 
         // Initialize players
         if (players.size == 0) {
-            for (player in stateUpdate.playersList) {
+            for (player in stateUpdate.players) {
                 players[player.id] = MyPlayer(grid, players, player.id, timer)
             }
         }
@@ -53,7 +51,7 @@ class MyBot : Callable {
         // Tell bots they are dead
         for ((_, player) in players) {
             var found = false
-            for (playerData in stateUpdate.playersList) {
+            for (playerData in stateUpdate.players) {
                 if (player.id == playerData.id) {
                     found = true
                     break
@@ -65,9 +63,9 @@ class MyBot : Callable {
         }
 
         // Process player
-        for (playerData in stateUpdate.playersList) {
+        for (playerData in stateUpdate.players) {
             val player = players[playerData.id]!!
-            player.update(playerData, stateUpdate.headquarters, response, stateUpdate)
+            player.update(playerData, stateUpdate.headquarters, api, stateUpdate)
         }
     }
 

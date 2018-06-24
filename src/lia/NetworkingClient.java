@@ -1,16 +1,13 @@
 package lia;
 
-import com.google.protobuf.InvalidProtocolBufferException;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
-import static lia.AiApiMessages.*;
 
 /**
  * Handles the connection to the game engine and takes
@@ -68,30 +65,7 @@ public class NetworkingClient extends WebSocketClient {
     }
 
     @Override
-    public void onMessage(ByteBuffer bytes) {
-        try {
-            Message msg = Message.parseFrom(bytes.array());
-
-            Response response = new Response(msg.getUid());
-
-            // If the message is data about map
-            if (msg.hasMapData()) {
-                MapData mapData = msg.getMapData();
-                myBot.process(mapData);
-            }
-            // If the message is an update about game state
-            else if (msg.hasStateUpdate()) {
-                StateUpdate stateUpdate = msg.getStateUpdate();
-                myBot.process(stateUpdate, response);
-            }
-
-            // Send response back to the game engine
-            send(response.toByteArray());
-
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-    }
+    public void onMessage(ByteBuffer bytes) {}
 
     @Override
     public void onClose(int code, String reason, boolean remote) {
@@ -108,5 +82,25 @@ public class NetworkingClient extends WebSocketClient {
     public void onOpen(ServerHandshake handshakedata) {}
 
     @Override
-    public void onMessage(String message) {}
+    public void onMessage(String message) {
+        try {
+            Api response = new Api();
+
+            if (message.contains(MessageType.MAP_DATA.toString())) {
+                MapData mapData = MapData.Companion.parse(message);
+                response.setUid(mapData.getUid());
+                myBot.process(mapData);
+
+            } else if (message.contains(MessageType.STATE_UPDATE.toString())) {
+                StateUpdate stateUpdate = StateUpdate.Companion.parse(message);
+                response.setUid(stateUpdate.getUid());
+                myBot.process(stateUpdate, response);
+            }
+
+            send(response.toJson());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

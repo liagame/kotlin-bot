@@ -2,9 +2,8 @@ package helpers
 
 import com.adamldavis.pathfinder.PathGrid
 import com.badlogic.gdx.math.Vector2
-import lia.AiApiMessages.*
-import lia.AiApiMessages.HQStatus.Enum.*
-import lia.Response
+import lia.*
+import lia.HeadquartersStatus.*
 import java.util.*
 
 class MyPlayer(val grid: PathGrid,
@@ -21,24 +20,24 @@ class MyPlayer(val grid: PathGrid,
 
     var isDead = false
 
-    fun update(playerState: Player, hq: Headquarters, response: Response, stateUpdate: StateUpdate) {
+    fun update(playerState: Player, hq: Headquarters, api: Api, stateUpdate: StateUpdate) {
         updatePriorities(playerState, hq, stateUpdate)
 
         when (state) {
-            MyPlayer.State.NONE -> none(playerState, response)
-            MyPlayer.State.GO_TO_HQ -> goToHq(playerState, hq, response)
-            MyPlayer.State.KILL_OPPONENT -> killOpponent(playerState, hq, response)
-            MyPlayer.State.LOST -> lost(playerState, response)
+            MyPlayer.State.NONE -> none(playerState, api)
+            MyPlayer.State.GO_TO_HQ -> goToHq(playerState, hq, api)
+            MyPlayer.State.KILL_OPPONENT -> killOpponent(playerState, hq, api)
+            MyPlayer.State.LOST -> lost(playerState, api)
         }
 
         lastState = playerState
     }
 
-    private fun none(playerState: Player, response: Response) {
+    private fun none(playerState: Player, api: Api) {
         if (turningLeft) {
-            response.setRotationSpeed(playerState.id, Rotation.Enum.LEFT)
+            api.setRotationSpeed(playerState.id, Rotation.LEFT)
         } else {
-            response.setRotationSpeed(playerState.id, Rotation.Enum.RIGHT)
+            api.setRotationSpeed(playerState.id, Rotation.RIGHT)
         }
     }
 
@@ -49,7 +48,7 @@ class MyPlayer(val grid: PathGrid,
             isDead = false
         }
 
-        if (playerState.opponentsInViewCount > 0) {
+        if (playerState.opponentsInView.size > 0) {
             state = State.KILL_OPPONENT
         }
         else {
@@ -81,41 +80,42 @@ class MyPlayer(val grid: PathGrid,
                     }
                 }
                 MyPlayer.State.KILL_OPPONENT -> {
-                    if (playerState.opponentsInViewCount == 0) {
+                    if (playerState.opponentsInView.size == 0) {
                         state = State.NONE
                     }
                 }
+                MyPlayer.State.LOST -> TODO()
             }
         }
     }
 
-    private fun lost(playerState: Player, response: Response) {
-        response.setThrustSpeed(playerState.id, ThrustSpeed.Enum.FORWARD)
-        response.setRotationSpeed(playerState.id, Rotation.Enum.RIGHT)
+    private fun lost(playerState: Player, api: Api) {
+        api.setThrustSpeed(playerState.id, ThrustSpeed.FORWARD)
+        api.setRotationSpeed(playerState.id, Rotation.RIGHT)
         state = State.NONE
     }
 
-    private fun goToHq(playerState: Player, hq: Headquarters, response: Response) {
-        if (hqNavigator.follow(playerState, response)) {
-            response.setThrustSpeed(playerState.id, ThrustSpeed.Enum.NONE)
+    private fun goToHq(playerState: Player, hq: Headquarters, api: Api) {
+        if (hqNavigator.follow(playerState, api)) {
+            api.setThrustSpeed(playerState.id, ThrustSpeed.NONE)
             state = State.NONE
         }
     }
 
-    private fun killOpponent(playerState: Player, hq: Headquarters, response: Response) {
+    private fun killOpponent(playerState: Player, hq: Headquarters, api: Api) {
         val p1 = Vector2(playerState.x, playerState.y)
-        val p2 =  Vector2(playerState.opponentsInViewList[0].x, playerState.opponentsInViewList[0].y)
+        val p2 = Vector2(playerState.opponentsInView[0].x, playerState.opponentsInView[0].y)
 
-        rotateToAngle(playerState, p1, p2, response)
+        rotateToAngle(playerState, p1, p2, api)
 
         if (p1.dst(p2) < 4) {
-            response.setThrustSpeed(playerState.id, ThrustSpeed.Enum.NONE)
+            api.setThrustSpeed(playerState.id, ThrustSpeed.NONE)
         } else if (hq.status != DEFEND) {
-            response.setThrustSpeed(playerState.id, ThrustSpeed.Enum.FORWARD)
+            api.setThrustSpeed(playerState.id, ThrustSpeed.FORWARD)
         }
 
         if (playerState.weaponLoaded) {
-            response.shoot(id)
+            api.shoot(id)
         }
     }
 
