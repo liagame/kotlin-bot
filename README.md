@@ -1,10 +1,10 @@
 # Kotlin Bot #
 
-* ``` git clone https://bitbucket.org/codinghavoc/java-bot ```
+* ``` git clone https://bitbucket.org/codinghavoc/kotlin-bot ```
 
 ##### Build the project #####
 * ``` gradlew build ```
-* Check if it works: ``` java -jar build/libs/java-bot.jar ```
+* Check if it works: ``` java -jar build/libs/kotlin-bot.jar ```
 
 ##### Use in IntelliJ IDEA #####
 
