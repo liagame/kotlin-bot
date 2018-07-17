@@ -11,7 +11,7 @@ data class MapData(
         val width: Float,
         val height: Float,
         val obstacles: Array<Obstacle>,
-        val headquarters: Array<HqLocation>
+        val unitLocations: Array<UnitLocation>
 ) {
     companion object {
         fun parse(msg: String): MapData {
@@ -29,7 +29,9 @@ data class Obstacle(
 )
 
 @Serializable
-data class HqLocation(
+data class UnitLocation(
+        val id: Int,
         val x: Float,
-        val y: Float
+        val y: Float,
+        val orientation: Float
 )

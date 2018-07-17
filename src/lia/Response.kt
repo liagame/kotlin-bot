@@ -21,21 +21,21 @@ data class Response(
 @Serializable
 data class ThrustSpeedEvent(
         val type: EventType,
-        val playerId: Int,
+        val unitId: Int,
         val speed: ThrustSpeed
 )
 
 @Serializable
 data class RotationEvent(
         val type: EventType,
-        val playerId: Int,
+        val unitId: Int,
         val rotation: Rotation
 )
 
 @Serializable
 data class ShootEvent(
         val type: EventType,
-        val playerId: Int
+        val unitId: Int
 )
 
 enum class EventType {

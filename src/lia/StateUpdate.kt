@@ -9,8 +9,7 @@ data class StateUpdate(
         protected var uid: Long,
         protected var type: MessageType,
         var time: Float,
-        var headquarters: Headquarters,
-        var players: Array<Player>
+        var units: Array<Unit>
 ){
     companion object {
         fun parse(msg: String): StateUpdate {
@@ -20,15 +19,7 @@ data class StateUpdate(
 }
 
 @Serializable
-data class Headquarters(
-        var status: HeadquartersStatus,
-        var location: HqLocation,
-        var timeToCapture: Float,
-        var timeToDestroy: Float
-)
-
-@Serializable
-data class Player(
+data class Unit(
         var id: Int,
         var health: Int,
         var x: Float,
@@ -36,7 +27,8 @@ data class Player(
         var orientation: Float,
         var thrustSpeed: ThrustSpeed,
         var rotation: Rotation,
-        var weaponLoaded: Boolean,
+        var canShoot: Boolean,
+        var nBullets: Int,
         var opponentsInView: Array<OpponentInView>,
         var opponentBulletsInView: Array<BulletInView>
 )
@@ -57,10 +49,6 @@ data class BulletInView(
         var orientation: Float,
         var velocity: Float
 )
-
-enum class HeadquartersStatus {
-    INACTIVE, CAPTURE, DEFEND, DESTROY
-}
 
 enum class ThrustSpeed {
     NONE, FORWARD, BACKWARD

@@ -24,24 +24,24 @@ public class Api {
         this.uid = uid;
     }
 
-    /** Change thrust speed of a player */
-    public void setThrustSpeed(int playerId, ThrustSpeed speed) {
+    /** Change thrust speed of a unit */
+    public void setThrustSpeed(int unitId, ThrustSpeed speed) {
         thrustSpeedEvents.add(
-                new ThrustSpeedEvent(EventType.SET_THRUST_SPEED, playerId, speed)
+                new ThrustSpeedEvent(EventType.SET_THRUST_SPEED, unitId, speed)
         );
     }
 
-    /** Change rotation speed of a player */
-    public void setRotationSpeed(int playerId, Rotation rotation) {
+    /** Change rotation speed of a unit */
+    public void setRotationSpeed(int unitId, Rotation rotation) {
         rotationEvents.add(
-                new RotationEvent(EventType.SET_ROTATION, playerId, rotation)
+                new RotationEvent(EventType.SET_ROTATION, unitId, rotation)
         );
     }
 
-    /** Make a player shoot */
-    public void shoot(int playerId) {
+    /** Make a unit shoot */
+    public void shoot(int unitId) {
         shootEvents.add(
-                new ShootEvent(EventType.SHOOT, playerId)
+                new ShootEvent(EventType.SHOOT, unitId)
         );
     }
 
