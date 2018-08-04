@@ -1,24 +1,23 @@
 package lia
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JSON
+import com.google.gson.GsonBuilder
 
 
-@Serializable
 data class StateUpdate(
-        protected var uid: Long,
-        protected var type: MessageType,
+        var uid: Long,
+        var type: MessageType,
         var time: Float,
         var units: Array<Unit>
 ){
     companion object {
+        val gson = GsonBuilder().create()!!
+
         fun parse(msg: String): StateUpdate {
-            return JSON.parse(msg)
+            return gson.fromJson(msg, StateUpdate::class.java)
         }
     }
 }
 
-@Serializable
 data class Unit(
         var id: Int,
         var health: Int,
@@ -33,7 +32,6 @@ data class Unit(
         var opponentBulletsInView: Array<BulletInView>
 )
 
-@Serializable
 data class OpponentInView(
         var id: Int,
         var health: Int,
@@ -42,7 +40,6 @@ data class OpponentInView(
         var orientation: Float
 )
 
-@Serializable
 data class BulletInView(
         var x: Float,
         var y: Float,

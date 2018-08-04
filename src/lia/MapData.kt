@@ -1,26 +1,25 @@
 package lia
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JSON
+import com.google.gson.GsonBuilder
 
 
-@Serializable
 data class MapData(
-        protected val uid: Long,
-        protected val type: MessageType,
+        val uid: Long,
+        val type: MessageType,
         val width: Float,
         val height: Float,
         val obstacles: Array<Obstacle>,
         val unitLocations: Array<UnitLocation>
-) {
+){
     companion object {
+        val gson = GsonBuilder().create()!!
+
         fun parse(msg: String): MapData {
-            return JSON.parse(msg)
+            return gson.fromJson(msg, MapData::class.java)
         }
     }
 }
 
-@Serializable
 data class Obstacle(
         val x: Float,
         val y: Float,
@@ -28,7 +27,6 @@ data class Obstacle(
         val height: Float
 )
 
-@Serializable
 data class UnitLocation(
         val id: Int,
         val x: Float,

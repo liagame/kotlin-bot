@@ -8,7 +8,6 @@ import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
  * Handles the connection to the game engine and takes
  * care of sending and retrieving data.
@@ -92,14 +91,16 @@ public class NetworkingClient extends WebSocketClient {
             if (message.contains(MessageType.MAP_DATA.toString())) {
                 MapData mapData = MapData.Companion.parse(message);
                 response.setUid(mapData.getUid());
+                System.out.println(mapData);
                 myBot.process(mapData);
 
             } else if (message.contains(MessageType.STATE_UPDATE.toString())) {
                 StateUpdate stateUpdate = StateUpdate.Companion.parse(message);
+                System.out.println(stateUpdate);
                 response.setUid(stateUpdate.getUid());
                 myBot.process(stateUpdate, response);
             }
-
+            System.out.println(response.toJson());
             send(response.toJson());
 
         } catch (Exception e) {

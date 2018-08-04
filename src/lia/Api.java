@@ -55,7 +55,7 @@ public class Api {
         ShootEvent[] shoot = new ShootEvent[shootEvents.size()];
         shoot = shootEvents.toArray(shoot);
 
-        Response response =  new Response(
+        Response response = new Response(
                 uid,
                 MessageType.RESPONSE,
                 thrust,

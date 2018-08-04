@@ -1,38 +1,36 @@
 package lia
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JSON
+import com.google.gson.GsonBuilder
 
-@Serializable
+
 data class Response(
-        protected val uid: Long,
-        protected val type: MessageType,
+        val uid: Long,
+        val type: MessageType,
         val thrustSpeedEvents: Array<ThrustSpeedEvent>,
         val rotationEvents: Array<RotationEvent>,
         val shootEvents: Array<ShootEvent>
 ){
     companion object {
+        val gson = GsonBuilder().create()!!
+
         fun toJson(response: Response): String {
-            return JSON.stringify(response)
+            return gson.toJson(response)
         }
     }
 }
 
-@Serializable
 data class ThrustSpeedEvent(
         val type: EventType,
         val unitId: Int,
         val speed: ThrustSpeed
 )
 
-@Serializable
 data class RotationEvent(
         val type: EventType,
         val unitId: Int,
         val rotation: Rotation
 )
 
-@Serializable
 data class ShootEvent(
         val type: EventType,
         val unitId: Int
