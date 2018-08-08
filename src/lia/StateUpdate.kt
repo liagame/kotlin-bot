@@ -52,5 +52,5 @@ enum class ThrustSpeed {
 }
 
 enum class Rotation {
-    NONE, LEFT, RIGHT
+    NONE, LEFT, RIGHT, SLOW_LEFT, SLOW_RIGHT
 }
