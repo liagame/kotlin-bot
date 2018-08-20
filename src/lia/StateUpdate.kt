@@ -7,7 +7,7 @@ data class StateUpdate(
         var uid: Long,
         var type: MessageType,
         var time: Float,
-        var units: Array<Unit>
+        var units: Array<UnitData>
 ){
     companion object {
         val gson = GsonBuilder().create()!!
@@ -18,7 +18,7 @@ data class StateUpdate(
     }
 }
 
-data class Unit(
+data class UnitData(
         var id: Int,
         var health: Int,
         var x: Float,

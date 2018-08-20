@@ -1,8 +1,6 @@
 # Kotlin Bot #
 
-* ``` git clone https://bitbucket.org/codinghavoc/kotlin-bot ```
-
-##### Build the project #####
+##### Build the project manually #####
 * ``` gradlew build ```
 * Check if it works: ``` java -jar build/libs/kotlin-bot.jar ```
 
