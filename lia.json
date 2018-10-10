@@ -1,3 +1,4 @@
 {
-  "language": "kotlin"
+  "language": "kotlin",
+  "languageBase": "java"
 }
