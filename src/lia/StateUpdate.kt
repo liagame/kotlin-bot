@@ -7,6 +7,7 @@ data class StateUpdate(
         var uid: Long,
         var type: MessageType,
         var time: Float,
+        var nOpponentsAlive: Int,
         var units: Array<UnitData>
 ){
     companion object {
@@ -24,12 +25,18 @@ data class UnitData(
         var x: Float,
         var y: Float,
         var orientation: Float,
-        var thrustSpeed: ThrustSpeed,
-        var rotation: Rotation,
+        var speed: Speed,
+        var rotationSpeed: RotationSpeed,
         var canShoot: Boolean,
         var nBullets: Int,
         var opponentsInView: Array<OpponentInView>,
-        var opponentBulletsInView: Array<BulletInView>
+        var opponentBulletsInView: Array<BulletInView>,
+        var navigationPath: Array<PointOnPath>?
+)
+
+data class PointOnPath(
+        var x: Float,
+        var y: Float
 )
 
 data class OpponentInView(
@@ -47,10 +54,10 @@ data class BulletInView(
         var velocity: Float
 )
 
-enum class ThrustSpeed {
+enum class Speed {
     NONE, FORWARD, BACKWARD
 }
 
-enum class Rotation {
+enum class RotationSpeed {
     NONE, LEFT, RIGHT, SLOW_LEFT, SLOW_RIGHT
 }

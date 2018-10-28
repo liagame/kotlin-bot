@@ -5,9 +5,7 @@ import com.google.gson.GsonBuilder
 data class MapData(
         val uid: Long,
         val type: MessageType,
-        val width: Float,
-        val height: Float,
-        val obstacles: Array<ObstacleData>,
+        val map: Array<BooleanArray>,
         val unitLocations: Array<UnitLocation>
 ){
     companion object {
@@ -18,13 +16,6 @@ data class MapData(
         }
     }
 }
-
-data class ObstacleData(
-        val x: Float,
-        val y: Float,
-        val width: Float,
-        val height: Float
-)
 
 data class UnitLocation(
         val id: Int,

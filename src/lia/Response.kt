@@ -6,9 +6,11 @@ import com.google.gson.GsonBuilder
 data class Response(
         val uid: Long,
         val type: MessageType,
-        val thrustSpeedEvents: Array<ThrustSpeedEvent>,
-        val rotationEvents: Array<RotationEvent>,
-        val shootEvents: Array<ShootEvent>
+        val speedEvents: Array<SpeedEvent>,
+        val rotationSpeedEvents: Array<RotationSpeedEvent>,
+        val shootEvents: Array<ShootEvent>,
+        val navigationStartEvents: Array<NavigationStartEvent>,
+        val navigationStopEvents: Array<NavigationStopEvent>
 ){
     companion object {
         val gson = GsonBuilder().create()!!
@@ -19,23 +21,31 @@ data class Response(
     }
 }
 
-data class ThrustSpeedEvent(
-        val type: EventType,
+data class SpeedEvent(
+        val index: Int,
         val unitId: Int,
-        val speed: ThrustSpeed
+        val speed: Speed
 )
 
-data class RotationEvent(
-        val type: EventType,
+data class RotationSpeedEvent(
+        val index: Int,
         val unitId: Int,
-        val rotation: Rotation
+        val rotationSpeed: RotationSpeed
 )
 
 data class ShootEvent(
-        val type: EventType,
+        val index: Int,
         val unitId: Int
 )
 
-enum class EventType {
-    SET_THRUST_SPEED, SET_ROTATION, SHOOT
-}
+data class NavigationStartEvent(
+        val index: Int,
+        val unitId: Int,
+        val x: Float,
+        val y: Float
+)
+
+data class NavigationStopEvent(
+        val index: Int,
+        val unitId: Int
+)

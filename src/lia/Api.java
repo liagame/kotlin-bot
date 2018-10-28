@@ -9,15 +9,24 @@ import java.util.ArrayList;
 public class Api {
 
     private long uid;
+    private int currentIndex = 0;
 
-    private ArrayList<ThrustSpeedEvent> thrustSpeedEvents;
-    private ArrayList<RotationEvent> rotationEvents;
+    private ArrayList<SpeedEvent> speedEvents;
+    private ArrayList<RotationSpeedEvent> rotationSpeedEvents;
     private ArrayList<ShootEvent> shootEvents;
+    private ArrayList<NavigationStartEvent> navigationStartEvents;
+    private ArrayList<NavigationStopEvent> navigationStopEvents;
 
     protected Api() {
-        thrustSpeedEvents = new ArrayList<>();
-        rotationEvents = new ArrayList<>();
+        speedEvents = new ArrayList<>();
+        rotationSpeedEvents = new ArrayList<>();
         shootEvents = new ArrayList<>();
+        navigationStartEvents = new ArrayList<>();
+        navigationStopEvents = new ArrayList<>();
+    }
+
+    private int getNextIndex() {
+        return currentIndex++;
     }
 
     protected void setUid(long uid) {
@@ -25,42 +34,45 @@ public class Api {
     }
 
     /** Change thrust speed of a unit */
-    public void setThrustSpeed(int unitId, ThrustSpeed speed) {
-        thrustSpeedEvents.add(
-                new ThrustSpeedEvent(EventType.SET_THRUST_SPEED, unitId, speed)
-        );
+    public void setSpeed(int unitId, Speed speed) {
+        speedEvents.add(new SpeedEvent(getNextIndex(), unitId, speed));
     }
 
     /** Change rotation speed of a unit */
-    public void setRotationSpeed(int unitId, Rotation rotation) {
-        rotationEvents.add(
-                new RotationEvent(EventType.SET_ROTATION, unitId, rotation)
-        );
+    public void setRotationSpeed(int unitId, RotationSpeed rotation) {
+        rotationSpeedEvents.add(new RotationSpeedEvent(getNextIndex(), unitId, rotation));
     }
 
     /** Make a unit shoot */
     public void shoot(int unitId) {
-        shootEvents.add(
-                new ShootEvent(EventType.SHOOT, unitId)
-        );
+        shootEvents.add(new ShootEvent(getNextIndex(), unitId));
+    }
+
+    /** Start navigation */
+    public void navigationStart(int unitId, float x, float y) {
+        navigationStartEvents.add(new NavigationStartEvent(getNextIndex(), unitId, x, y));
+    }
+
+    /** Stop navigation */
+    public void navigationStop(int unitId) {
+        navigationStopEvents.add(new NavigationStopEvent(getNextIndex(), unitId));
     }
 
     protected String toJson() {
-        ThrustSpeedEvent[] thrust = new ThrustSpeedEvent[thrustSpeedEvents.size()];
-        thrust = thrustSpeedEvents.toArray(thrust);
-
-        RotationEvent[] rotation = new RotationEvent[rotationEvents.size()];
-        rotation = rotationEvents.toArray(rotation);
-
+        SpeedEvent[] speed = new SpeedEvent[speedEvents.size()];
+        RotationSpeedEvent[] rotationSpeed = new RotationSpeedEvent[rotationSpeedEvents.size()];
         ShootEvent[] shoot = new ShootEvent[shootEvents.size()];
-        shoot = shootEvents.toArray(shoot);
+        NavigationStartEvent[] navigationStart = new NavigationStartEvent[navigationStartEvents.size()];
+        NavigationStopEvent[] navigationStop = new NavigationStopEvent[navigationStopEvents.size()];
 
         Response response = new Response(
                 uid,
                 MessageType.RESPONSE,
-                thrust,
-                rotation,
-                shoot
+                speedEvents.toArray(speed),
+                rotationSpeedEvents.toArray(rotationSpeed),
+                shootEvents.toArray(shoot),
+                navigationStartEvents.toArray(navigationStart),
+                navigationStopEvents.toArray(navigationStop)
         );
         return Response.Companion.toJson(response);
     }
