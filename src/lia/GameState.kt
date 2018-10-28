@@ -3,7 +3,7 @@ package lia
 import com.google.gson.GsonBuilder
 
 
-data class StateUpdate(
+data class GameState(
         var uid: Long,
         var type: MessageType,
         var time: Float,
@@ -13,8 +13,8 @@ data class StateUpdate(
     companion object {
         val gson = GsonBuilder().create()!!
 
-        fun parse(msg: String): StateUpdate {
-            return gson.fromJson(msg, StateUpdate::class.java)
+        fun parse(msg: String): GameState {
+            return gson.fromJson(msg, GameState::class.java)
         }
     }
 }

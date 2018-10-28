@@ -2,7 +2,7 @@ package lia
 
 import com.google.gson.GsonBuilder
 
-data class MapData(
+data class GameEnvironment(
         val uid: Long,
         val type: MessageType,
         val map: Array<BooleanArray>,
@@ -11,8 +11,8 @@ data class MapData(
     companion object {
         val gson = GsonBuilder().create()!!
 
-        fun parse(msg: String): MapData {
-            return gson.fromJson(msg, MapData::class.java)
+        fun parse(msg: String): GameEnvironment {
+            return gson.fromJson(msg, GameEnvironment::class.java)
         }
     }
 }

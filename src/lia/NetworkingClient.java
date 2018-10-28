@@ -14,13 +14,13 @@ import java.util.Map;
  **/
 public class NetworkingClient extends WebSocketClient {
 
-    private Callable myBot;
+    private Bot myBot;
 
     private static Exception illegalArgumentsException = new Exception(
             "Illegal arguments. See --help for the correct structure."
     );
 
-    public static NetworkingClient connectNew(String[] args, Callable myBot) throws Exception {
+    public static NetworkingClient connectNew(String[] args, Bot myBot) throws Exception {
         String botId = "";
         String port = "8887";
 
@@ -58,7 +58,7 @@ public class NetworkingClient extends WebSocketClient {
         return c;
     }
 
-    private NetworkingClient(URI serverUri, Map<String, String> httpHeaders, Callable myBot) {
+    private NetworkingClient(URI serverUri, Map<String, String> httpHeaders, Bot myBot) {
         super(serverUri, httpHeaders);
         this.myBot = myBot;
     }
@@ -88,15 +88,15 @@ public class NetworkingClient extends WebSocketClient {
         try {
             Api response = new Api();
 
-            if (message.contains(MessageType.MAP_DATA.toString())) {
-                MapData mapData = MapData.Companion.parse(message);
-                response.setUid(mapData.getUid());
-                myBot.process(mapData);
+            if (message.contains(MessageType.GAME_ENVIRONMENT.toString())) {
+                GameEnvironment gameEnvironment = GameEnvironment.Companion.parse(message);
+                response.setUid(gameEnvironment.getUid());
+                myBot.processGameEnvironment(gameEnvironment);
 
-            } else if (message.contains(MessageType.STATE_UPDATE.toString())) {
-                StateUpdate stateUpdate = StateUpdate.Companion.parse(message);
-                response.setUid(stateUpdate.getUid());
-                myBot.process(stateUpdate, response);
+            } else if (message.contains(MessageType.GAME_STATE.toString())) {
+                GameState gameState = GameState.Companion.parse(message);
+                response.setUid(gameState.getUid());
+                myBot.processGameState(gameState, response);
             }
             send(response.toJson());
 
