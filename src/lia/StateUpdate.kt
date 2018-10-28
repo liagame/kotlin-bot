@@ -31,10 +31,10 @@ data class UnitData(
         var nBullets: Int,
         var opponentsInView: Array<OpponentInView>,
         var opponentBulletsInView: Array<BulletInView>,
-        var navigationPath: Array<PointOnPath>?
+        var navigationPath: Array<Point>?
 )
 
-data class PointOnPath(
+data class Point(
         var x: Float,
         var y: Float
 )

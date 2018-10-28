@@ -10,9 +10,6 @@ import java.util.*
  */
 class MyBot : Callable {
 
-    // We will use random numbers for generating unique positions on the map
-    val random = Random()
-
     // This will store a map that we will receive from game engine at the
     // start of the game.
     // x=0, y=0 presents a bottom left corner of the map, and the value on
@@ -62,8 +59,8 @@ class MyBot : Callable {
         var y: Int
         // Generate new x and y until you get one that is not placed on an obstacle
         do {
-            x = (random.nextFloat() * (map.size - 2 * minDistanceToMapEdge)).toInt() + minDistanceToMapEdge
-            y = (random.nextFloat() * (map[0].size - 2 * minDistanceToMapEdge)).toInt() + minDistanceToMapEdge
+            x = (Math.random() * (map.size - 2 * minDistanceToMapEdge)).toInt() + minDistanceToMapEdge
+            y = (Math.random() * (map[0].size - 2 * minDistanceToMapEdge)).toInt() + minDistanceToMapEdge
         } while (map[x][y]) // if true it means at (x,y) in map there is an obstacle
 
         return Pair(x, y)
