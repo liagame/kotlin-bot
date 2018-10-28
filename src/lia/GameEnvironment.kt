@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder
 data class GameEnvironment(
         val uid: Long,
         val type: MessageType,
-        val map: Array<BooleanArray>,
+        val map: Array<Array<Boolean>>,
         val unitLocations: Array<UnitLocation>
 ){
     companion object {

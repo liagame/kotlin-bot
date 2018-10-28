@@ -1,65 +1,64 @@
 import lia.*
 
 /**
- * This is your bot. Implement it with your logic.
+ * This is your bot that will play the game for you.
  *
- * In this example bot keeps sending units to random locations on map
- * and is able to shoot when it sees an opponent, it does not aim at
- * him though!
+ * Implementation below keeps sending units to random locations on the map
+ * and makes them shoot when they see opponents.
  */
 class MyBot : Bot {
 
-    // Here we will store a map that we will receive from game engine at the
-    // start of the game.
-    // x=0, y=0 presents a bottom left corner of the map, and the value on
-    // map is true if there is an obstacle
-    lateinit var map: Array<BooleanArray>
+    // Here we will store the map that the game will be played on. Map has values set
+    // to True where there is an obstacle. You can access (x,y) coordinate by calling
+    // map[x][y] and x=0, y=0 is placed at the bottom left corner.
+    lateinit var map: Array<Array<Boolean>>
 
-    // Called only once when the game is initialized holding data about the map.
+    // This method is called only once at the beginning of the game and holds the basic
+    // information about the game environment.
+    // - GameEnvironment reference: TODO link
     @Synchronized override fun processGameEnvironment(gameEnvironment: GameEnvironment) {
-        // We store the map that game uses in our variable.
-        // https://docs.liagame.com/api/#mapdata for the data you receive here
+
+        // Here we store the map that is used in current game. We will use it later.
         map = gameEnvironment.map
     }
 
-    // Repeatedly called 10 times per second from game engine with
-    // game state updates. Here is where all the things happen.
+    // This method is the main part of your bot. It is called 10 times per game seconds and
+    // it holds game's current state and the Api object which you use to control your units.
+    // - GameState reference: TODO link
+    // - Api reference:       TODO link
     @Synchronized override fun processGameState(gameState: GameState, api: Api) {
 
-        // Iterate through the data of all of your units
+        // First we iterate through all of our units that are still alive
         for (unit in gameState.units) {
 
-            // navigationPath is a field of your unit that shows the path
-            // on which the unit is currently using if you have sent it
-            // to a location using a api.navigationStart method.
-            // If it is empty it means there is no path set. In this case
-            // we choose a new destination and send the unit there.
+            // With api.navigationStart(...) method you can send your units to go to a
+            // specified point on the map all by themselves. If they are currently going
+            // somewhere then their path is stored in navigationPath field. If the field
+            // is empty the unit is not going anywhere automatically. Here, if the unit
+            // is not going anywhere we choose a new location and send it there.
             if (unit.navigationPath.isEmpty()) {
 
-                // Generate a point on map
+                // Generate a point on the map where there is no obstacle.
                 val (x, y) = randomValidPointOnMap()
 
-                // Send the unit to chosen x and y
+                // Make the unit go to the chosen x and y.
                 api.navigationStart(unit.id, x.toFloat(), y.toFloat())
             }
 
-            // If the unit has an opponent in it's viewing area then
-            // make it shoot
+            // If the unit sees an opponent then make it shoot.
             if (unit.opponentsInView.isNotEmpty()) {
                 api.shoot(unit.id)
             }
         }
     }
 
-    // Finds a random point on the map that is not on the obstacle
+    // Finds a random point on the map where there is no obstacle.
     fun randomValidPointOnMap(): Pair<Int, Int> {
-        val minDistanceToMapEdge = 2
-
-        // Generate new x and y until you get one that is not placed on an obstacle
+        // Generate new x and y until you get a position that is not placed on an obstacle.
         while (true) {
-            val x = (Math.random() * (map.size - 2 * minDistanceToMapEdge)).toInt() + minDistanceToMapEdge
-            val y = (Math.random() * (map[0].size - 2 * minDistanceToMapEdge)).toInt() + minDistanceToMapEdge
-            // If true it means that at (x,y) in map there is an obstacle
+            val x = (Math.random()* map.size).toInt()
+            val y = (Math.random() * map[0].size).toInt()
+            // False means that on (x,y) there is no obstacle.
             if (!map[x][y]) {
                 return Pair(x, y)
             }
@@ -67,7 +66,7 @@ class MyBot : Bot {
     }
 }
 
-// This connects your bot to Lia game engine
+// This connects your bot to Lia game engine, don't change it
 fun main(args: Array<String>) {
     NetworkingClient.connectNew(args, MyBot())
 }
