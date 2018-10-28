@@ -31,7 +31,7 @@ data class UnitData(
         var nBullets: Int,
         var opponentsInView: Array<OpponentInView>,
         var opponentBulletsInView: Array<BulletInView>,
-        var navigationPath: Array<Point>?
+        var navigationPath: Array<Point>
 )
 
 data class Point(

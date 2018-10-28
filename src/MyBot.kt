@@ -19,7 +19,7 @@ class MyBot : Callable {
     // Called only once when the game is initialized holding data about the map.
     @Synchronized override fun process(mapData: MapData) {
         // We store the map that game uses in our variable.
-        // https://docs.liagame.com/api/#mapdata for the data you receive
+        // https://docs.liagame.com/api/#mapdata for the data you receive here
         map = mapData.map
     }
 
@@ -35,7 +35,7 @@ class MyBot : Callable {
             // to a location using a api.navigationStart method.
             // If it is empty it means there is no path set. In this case
             // we choose a new destination and send the unit there.
-            if (unit.navigationPath == null) {
+            if (unit.navigationPath.isEmpty()) {
 
                 // Generate a point on map
                 val (x, y) = randomValidPointOnMap()
@@ -61,7 +61,7 @@ class MyBot : Callable {
         do {
             x = (Math.random() * (map.size - 2 * minDistanceToMapEdge)).toInt() + minDistanceToMapEdge
             y = (Math.random() * (map[0].size - 2 * minDistanceToMapEdge)).toInt() + minDistanceToMapEdge
-        } while (map[x][y]) // if true it means at (x,y) in map there is an obstacle
+        } while (map[x][y]) // if true it means that at (x,y) in map there is an obstacle
 
         return Pair(x, y)
     }
