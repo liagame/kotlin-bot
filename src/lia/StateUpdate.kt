@@ -24,9 +24,9 @@ data class UnitData(
         var health: Int,
         var x: Float,
         var y: Float,
-        var orientation: Float,
+        var orientationAngle: Float,
         var speed: Speed,
-        var rotationSpeed: RotationSpeed,
+        var rotation: Rotation,
         var canShoot: Boolean,
         var nBullets: Int,
         var opponentsInView: Array<OpponentInView>,
@@ -58,6 +58,6 @@ enum class Speed {
     NONE, FORWARD, BACKWARD
 }
 
-enum class RotationSpeed {
+enum class Rotation {
     NONE, LEFT, RIGHT, SLOW_LEFT, SLOW_RIGHT
 }

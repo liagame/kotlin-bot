@@ -10,7 +10,7 @@ import java.util.*
  */
 class MyBot : Callable {
 
-    // This will store a map that we will receive from game engine at the
+    // Here we will store a map that we will receive from game engine at the
     // start of the game.
     // x=0, y=0 presents a bottom left corner of the map, and the value on
     // map is true if there is an obstacle
@@ -67,7 +67,7 @@ class MyBot : Callable {
     }
 }
 
-// This connects your bot to your game engine
+// This connects your bot to Lia game engine
 fun main(args: Array<String>) {
     NetworkingClient.connectNew(args, MyBot())
 }

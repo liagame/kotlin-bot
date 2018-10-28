@@ -12,14 +12,14 @@ public class Api {
     private int currentIndex = 0;
 
     private ArrayList<SpeedEvent> speedEvents;
-    private ArrayList<RotationSpeedEvent> rotationSpeedEvents;
+    private ArrayList<RotationEvent> rotationEvents;
     private ArrayList<ShootEvent> shootEvents;
     private ArrayList<NavigationStartEvent> navigationStartEvents;
     private ArrayList<NavigationStopEvent> navigationStopEvents;
 
     protected Api() {
         speedEvents = new ArrayList<>();
-        rotationSpeedEvents = new ArrayList<>();
+        rotationEvents = new ArrayList<>();
         shootEvents = new ArrayList<>();
         navigationStartEvents = new ArrayList<>();
         navigationStopEvents = new ArrayList<>();
@@ -39,8 +39,8 @@ public class Api {
     }
 
     /** Change rotation speed of a unit */
-    public void setRotationSpeed(int unitId, RotationSpeed rotation) {
-        rotationSpeedEvents.add(new RotationSpeedEvent(getNextIndex(), unitId, rotation));
+    public void setRotation(int unitId, Rotation rotation) {
+        rotationEvents.add(new RotationEvent(getNextIndex(), unitId, rotation));
     }
 
     /** Make a unit shoot */
@@ -60,7 +60,7 @@ public class Api {
 
     protected String toJson() {
         SpeedEvent[] speed = new SpeedEvent[speedEvents.size()];
-        RotationSpeedEvent[] rotationSpeed = new RotationSpeedEvent[rotationSpeedEvents.size()];
+        RotationEvent[] rotationSpeed = new RotationEvent[rotationEvents.size()];
         ShootEvent[] shoot = new ShootEvent[shootEvents.size()];
         NavigationStartEvent[] navigationStart = new NavigationStartEvent[navigationStartEvents.size()];
         NavigationStopEvent[] navigationStop = new NavigationStopEvent[navigationStopEvents.size()];
@@ -69,7 +69,7 @@ public class Api {
                 uid,
                 MessageType.RESPONSE,
                 speedEvents.toArray(speed),
-                rotationSpeedEvents.toArray(rotationSpeed),
+                rotationEvents.toArray(rotationSpeed),
                 shootEvents.toArray(shoot),
                 navigationStartEvents.toArray(navigationStart),
                 navigationStopEvents.toArray(navigationStop)

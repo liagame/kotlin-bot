@@ -7,7 +7,7 @@ data class Response(
         val uid: Long,
         val type: MessageType,
         val speedEvents: Array<SpeedEvent>,
-        val rotationSpeedEvents: Array<RotationSpeedEvent>,
+        val rotationEvents: Array<RotationEvent>,
         val shootEvents: Array<ShootEvent>,
         val navigationStartEvents: Array<NavigationStartEvent>,
         val navigationStopEvents: Array<NavigationStopEvent>
@@ -27,10 +27,10 @@ data class SpeedEvent(
         val speed: Speed
 )
 
-data class RotationSpeedEvent(
+data class RotationEvent(
         val index: Int,
         val unitId: Int,
-        val rotationSpeed: RotationSpeed
+        val rotation: Rotation
 )
 
 data class ShootEvent(
