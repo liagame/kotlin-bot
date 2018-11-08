@@ -14,12 +14,12 @@ class MyBot : Bot {
     // - GameEnvironment reference: TODO link
     @Synchronized override fun processGameEnvironment(gameEnvironment: GameEnvironment) {
 
-        // We store the game map so that we can use it in our main method.
+        // We store the game map so that we can use it later.
         map = gameEnvironment.map
     }
 
     // This is the main method where you control your bot. 10 times per game second it receives
-    // current game state. Use Api object to call actions on the units.
+    // current game state. Use Api object to call actions on your units.
     // - GameState reference: TODO link
     // - Api reference:       TODO link
     @Synchronized override fun processGameState(gameState: GameState, api: Api) {
@@ -51,17 +51,16 @@ class MyBot : Bot {
 
             // If the unit sees an opponent then make it shoot.
             if (unit.opponentsInView.isNotEmpty()) {
-
                 api.shoot(unit.id)
 
-                // Don't forget to make your unit brag :)
+                // Don't forget to make your unit brag. :)
                 api.saySomething(unit.id, "I see you!")
             }
         }
     }
 }
 
-// This connects your bot to Lia game engine, don't change it.
+// Connects your bot to Lia game engine, don't change it.
 fun main(args: Array<String>) {
     NetworkingClient.connectNew(args, MyBot())
 }

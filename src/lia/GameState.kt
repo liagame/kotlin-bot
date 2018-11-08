@@ -7,7 +7,7 @@ data class GameState(
         var uid: Long,
         var type: MessageType,
         var time: Float,
-        var nOpponentsAlive: Int,
+        var numberOfOpponentsAlive: Int,
         var units: Array<UnitData>
 ){
     companion object {
@@ -45,7 +45,9 @@ data class OpponentInView(
         var health: Int,
         var x: Float,
         var y: Float,
-        var orientation: Float
+        var orientation: Float,
+        var speed: Speed,
+        var rotation: Rotation
 )
 
 data class BulletInView(
