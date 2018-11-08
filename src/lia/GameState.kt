@@ -29,6 +29,7 @@ data class UnitData(
         var rotation: Rotation,
         var canShoot: Boolean,
         var nBullets: Int,
+        var canSaySomething: Boolean,
         var opponentsInView: Array<OpponentInView>,
         var opponentBulletsInView: Array<BulletInView>,
         var navigationPath: Array<Point>

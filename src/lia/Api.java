@@ -16,6 +16,7 @@ public class Api {
     private ArrayList<ShootEvent> shootEvents;
     private ArrayList<NavigationStartEvent> navigationStartEvents;
     private ArrayList<NavigationStopEvent> navigationStopEvents;
+    private ArrayList<SaySomethingEvent> saySomethingEvents;
 
     protected Api() {
         speedEvents = new ArrayList<>();
@@ -23,6 +24,7 @@ public class Api {
         shootEvents = new ArrayList<>();
         navigationStartEvents = new ArrayList<>();
         navigationStopEvents = new ArrayList<>();
+        saySomethingEvents = new ArrayList<>();
     }
 
     private int getNextIndex() {
@@ -58,21 +60,21 @@ public class Api {
         navigationStopEvents.add(new NavigationStopEvent(getNextIndex(), unitId));
     }
 
-    protected String toJson() {
-        SpeedEvent[] speed = new SpeedEvent[speedEvents.size()];
-        RotationEvent[] rotationSpeed = new RotationEvent[rotationEvents.size()];
-        ShootEvent[] shoot = new ShootEvent[shootEvents.size()];
-        NavigationStartEvent[] navigationStart = new NavigationStartEvent[navigationStartEvents.size()];
-        NavigationStopEvent[] navigationStop = new NavigationStopEvent[navigationStopEvents.size()];
+    /** Make your unit say something */
+    public void saySomething(int unitId, String text) {
+        saySomethingEvents.add(new SaySomethingEvent(getNextIndex(), unitId, text));
+    }
 
+    protected String toJson() {
         Response response = new Response(
                 uid,
                 MessageType.RESPONSE,
-                speedEvents.toArray(speed),
-                rotationEvents.toArray(rotationSpeed),
-                shootEvents.toArray(shoot),
-                navigationStartEvents.toArray(navigationStart),
-                navigationStopEvents.toArray(navigationStop)
+                speedEvents.toArray(new SpeedEvent[speedEvents.size()]),
+                rotationEvents.toArray(new RotationEvent[rotationEvents.size()]),
+                shootEvents.toArray(new ShootEvent[shootEvents.size()]),
+                navigationStartEvents.toArray(new NavigationStartEvent[navigationStartEvents.size()]),
+                navigationStopEvents.toArray(new NavigationStopEvent[navigationStopEvents.size()]),
+                saySomethingEvents.toArray(new SaySomethingEvent[saySomethingEvents.size()])
         );
         return Response.Companion.toJson(response);
     }
