@@ -58,9 +58,11 @@ class MyBot : Bot {
             }
         }
     }
-}
 
-// Connects your bot to Lia game engine, don't change it.
-fun main(args: Array<String>) {
-    NetworkingClient.connectNew(args, MyBot())
+    // Connects your bot to Lia game engine, don't change it.
+    companion object {
+        @JvmStatic fun main(args: Array<String>) {
+            NetworkingClient.connectNew(args, MyBot())
+        }
+    }
 }
