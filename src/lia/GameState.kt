@@ -45,7 +45,7 @@ data class OpponentInView(
         var health: Int,
         var x: Float,
         var y: Float,
-        var orientation: Float,
+        var orientationAngle: Float,
         var speed: Speed,
         var rotation: Rotation
 )
