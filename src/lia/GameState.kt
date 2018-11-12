@@ -7,7 +7,7 @@ data class GameState(
         var uid: Long,
         var type: MessageType,
         var time: Float,
-        var numberOfOpponentsAlive: Int,
+        var numberOfRemainingOpponents: Int,
         var units: Array<UnitData>
 ){
     companion object {
