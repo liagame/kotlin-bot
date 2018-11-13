@@ -26,7 +26,7 @@ class MyBot : Bot {
 
         // We iterate through all of our units that are still alive.
         for (unit in gameState.units) {
-            println(unit.orientationAngle)
+
             // If the unit is not going anywhere, we choose a new valid point on the
             // map and send the unit there.
             if (unit.navigationPath.isEmpty()) {
