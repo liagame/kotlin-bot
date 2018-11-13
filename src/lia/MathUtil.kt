@@ -11,7 +11,7 @@ object MathUtil {
 
     /**
      * Calculates the angle of a vector from (x1,y1) to (x2,y2) relative to the x-axis.
-     * Angles are towards the positive x-axis (typically counter-clockwise) and between 0 and 360
+     * Angles are measured from x-axis in counter-clockwise direction and between 0 and 360.
      * @return angle in degrees
      */
     fun angle(x1: Float, y1: Float, x2: Float, y2: Float): Float {
