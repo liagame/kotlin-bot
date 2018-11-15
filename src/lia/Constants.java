@@ -3,9 +3,10 @@ package lia;
 import com.google.gson.JsonObject;
 
 /**
- * Constants are set on runtime from game engine. Find the
- * predefined values in data/game-config.json or print them out
- * in processGameEnvironment() method in your bot implementation.
+ * Constants are set on runtime from game engine, changing them has
+ * no effect. Find the predefined values in data/game-config.json
+ * or print them out in processGameEnvironment() method in your bot
+ * implementation.
  */
 public class Constants {
     /** The width of the map in world units. */
