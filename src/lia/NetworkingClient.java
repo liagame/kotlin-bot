@@ -1,5 +1,7 @@
 package lia;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
@@ -89,11 +91,19 @@ public class NetworkingClient extends WebSocketClient {
             Api response = new Api();
 
             if (message.contains(MessageType.GAME_ENVIRONMENT.toString())) {
+                // Load constants
+                JsonParser parser = new JsonParser();
+                JsonObject jsonObject = parser.parse(message).getAsJsonObject();
+                JsonObject constantsJson = jsonObject.getAsJsonObject("constants");
+                Constants.load(constantsJson);
+
+                // Extract GameEnvironment and send it to bot
                 GameEnvironment gameEnvironment = GameEnvironment.Companion.parse(message);
                 response.setUid(gameEnvironment.getUid());
                 myBot.processGameEnvironment(gameEnvironment);
 
             } else if (message.contains(MessageType.GAME_STATE.toString())) {
+                // Extract GameState and send it to bot
                 GameState gameState = GameState.Companion.parse(message);
                 response.setUid(gameState.getUid());
                 myBot.processGameState(gameState, response);
