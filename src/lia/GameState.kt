@@ -8,6 +8,7 @@ data class GameState(
         var type: MessageType,
         var time: Float,
         var numberOfRemainingOpponents: Int,
+        var canSaySomething: Boolean,
         var units: Array<UnitData>
 ){
     companion object {
@@ -29,7 +30,6 @@ data class UnitData(
         var rotation: Rotation,
         var canShoot: Boolean,
         var nBullets: Int,
-        var canSaySomething: Boolean,
         var opponentsInView: Array<OpponentInView>,
         var opponentBulletsInView: Array<BulletInView>,
         var navigationPath: Array<Point>
