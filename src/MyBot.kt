@@ -11,7 +11,7 @@ class MyBot : Bot {
     lateinit var map: Array<Array<Boolean>>
 
     // In this method we receive the basic information about the game environment.
-    // - GameEnvironment reference: TODO link
+    // - GameEnvironment reference: https://docs.liagame.com/api/#gameenvironment
     @Synchronized override fun processGameEnvironment(gameEnvironment: GameEnvironment) {
 
         // We store the game map so that we can use it later.
@@ -20,8 +20,8 @@ class MyBot : Bot {
 
     // This is the main method where you control your bot. 10 times per game second it receives
     // current game state. Use Api object to call actions on your units.
-    // - GameState reference: TODO link
-    // - Api reference:       TODO link
+    // - GameState reference: https://docs.liagame.com/api/#gamestate
+    // - Api reference:       https://docs.liagame.com/api/#api-object
     @Synchronized override fun processGameState(gameState: GameState, api: Api) {
 
         // We iterate through all of our units that are still alive.
