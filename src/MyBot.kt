@@ -45,8 +45,9 @@ class MyBot : Bot {
                     }
                 }
 
-                // Make the unit go to the chosen x and y.
-                api.navigationStart(unit.id, x.toFloat(), y.toFloat(), true)
+                // Make the unit go to the chosen x and y. Last parameter is a boolean that
+                // if set to true tells the unit to move backwards.
+                api.navigationStart(unit.id, x.toFloat(), y.toFloat(), false)
             }
 
             // If the unit sees an opponent then make it shoot.
