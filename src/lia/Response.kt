@@ -43,7 +43,8 @@ data class NavigationStartEvent(
         val index: Int,
         val unitId: Int,
         val x: Float,
-        val y: Float
+        val y: Float,
+        val moveBackwards: Boolean
 )
 
 data class NavigationStopEvent(

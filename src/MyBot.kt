@@ -46,7 +46,7 @@ class MyBot : Bot {
                 }
 
                 // Make the unit go to the chosen x and y.
-                api.navigationStart(unit.id, x.toFloat(), y.toFloat())
+                api.navigationStart(unit.id, x.toFloat(), y.toFloat(), true)
             }
 
             // If the unit sees an opponent then make it shoot.

@@ -51,8 +51,8 @@ public class Api {
     }
 
     /** Start navigation */
-    public void navigationStart(int unitId, float x, float y) {
-        navigationStartEvents.add(new NavigationStartEvent(getNextIndex(), unitId, x, y));
+    public void navigationStart(int unitId, float x, float y, boolean moveBackwards) {
+        navigationStartEvents.add(new NavigationStartEvent(getNextIndex(), unitId, x, y, moveBackwards));
     }
 
     /** Stop navigation */
