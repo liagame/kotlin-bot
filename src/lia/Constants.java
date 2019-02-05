@@ -68,10 +68,10 @@ public class Constants {
     public static float MAX_NUMBER_OF_UNITS;
     /** After how many seconds new resources stop spawning */
     public static int STOP_SPAWNING_AFTER;
-    /** The maximum duration of processing processGameEnvironment() method. */
-    public static float PROCESS_GAME_ENVIRONMENT_TIMEOUT;
-    /** The maximum duration of processing processGameState() method. */
-    public static float PROCESS_GAME_STATE_TIMEOUT;
+    /** The maximum duration of the first update() call. */
+    public static float FIRST_TICK_TIMEOUT;
+    /** The maximum duration of each update() call after the first one. */
+    public static float TICK_TIMEOUT;
 
     protected static void load(JsonObject constantsJson) {
         MAP_WIDTH = constantsJson.get("MAP_WIDTH").getAsInt();
@@ -99,8 +99,8 @@ public class Constants {
         WARRIOR_PRICE = constantsJson.get("WARRIOR_PRICE").getAsFloat();
         WORKER_PRICE = constantsJson.get("WORKER_PRICE").getAsFloat();
         MAX_NUMBER_OF_UNITS = constantsJson.get("MAX_NUMBER_OF_UNITS").getAsFloat();
-        PROCESS_GAME_ENVIRONMENT_TIMEOUT = constantsJson.get("PROCESS_GAME_ENVIRONMENT_TIMEOUT").getAsFloat();
-        PROCESS_GAME_STATE_TIMEOUT = constantsJson.get("PROCESS_GAME_STATE_TIMEOUT").getAsFloat();
+        FIRST_TICK_TIMEOUT = constantsJson.get("FIRST_TICK_TIMEOUT").getAsFloat();
+        TICK_TIMEOUT = constantsJson.get("TICK_TIMEOUT").getAsFloat();
         STOP_SPAWNING_AFTER = constantsJson.get("STOP_SPAWNING_AFTER").getAsInt();
         SPAWN_POINT = new SpawnPoint();
         SPAWN_POINT.x = constantsJson.get("SPAWN_POINT").getAsJsonObject().get("x").getAsFloat();
