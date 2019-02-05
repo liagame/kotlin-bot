@@ -28,8 +28,8 @@ class MyBot : Bot {
                 // Generate new x and y until you get a position on the map
                 // where there is no obstacle.
                 while (true) {
-                    val x = (Math.random() * Constants.MAP.size).toInt()
-                    val y = (Math.random() * Constants.MAP[0].size).toInt()
+                    val x = (Math.random() * Constants.MAP_WIDTH).toInt()
+                    val y = (Math.random() * Constants.MAP_HEIGHT).toInt()
 
                     // If map[x][y] equals false it means that at (x,y) there is no obstacle.
                     if (!Constants.MAP[x][y]) {
