@@ -90,23 +90,19 @@ public class NetworkingClient extends WebSocketClient {
         try {
             Api response = new Api();
 
-            if (message.contains(MessageType.GAME_ENVIRONMENT.toString())) {
+            if (message.contains(MessageType.GAME_SETUP.toString())) {
                 // Load constants
                 JsonParser parser = new JsonParser();
                 JsonObject jsonObject = parser.parse(message).getAsJsonObject();
                 JsonObject constantsJson = jsonObject.getAsJsonObject("constants");
                 Constants.load(constantsJson);
-
-                // Extract GameEnvironment and send it to bot
-                GameEnvironment gameEnvironment = GameEnvironment.Companion.parse(message);
-                response.setUid(gameEnvironment.getUid());
-                myBot.processGameEnvironment(gameEnvironment);
+                response.setUid(jsonObject.get("uid").getAsLong());
 
             } else if (message.contains(MessageType.GAME_STATE.toString())) {
                 // Extract GameState and send it to bot
                 GameState gameState = GameState.Companion.parse(message);
                 response.setUid(gameState.getUid());
-                myBot.processGameState(gameState, response);
+                myBot.update(gameState, response);
             }
             send(response.toJson());
 

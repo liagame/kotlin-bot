@@ -1,60 +1,55 @@
 import lia.*
 
 /**
- * Here is where you control your bot. Initial implementation keeps sending units
- * to random locations on the map and makes them shoot when they see opponents.
+ * Initial implementation keeps picking random locations on the map
+ * and sending units there. Worker units collect resources if they
+ * see them while warrior units shoot if they see opponents.
  */
 class MyBot : Bot {
 
-    // Here we store the map as a 2D array of booleans. If map[x][y] equals True that
-    // means that at (x,y) there is an obstacle. x=0, y=0 points to bottom left corner.
-    lateinit var map: Array<Array<Boolean>>
-
-    // In this method we receive the basic information about the game environment.
-    // - GameEnvironment reference: https://docs.liagame.com/api/#gameenvironment
-    @Synchronized override fun processGameEnvironment(gameEnvironment: GameEnvironment) {
-
-        // We store the game map so that we can use it later.
-        map = gameEnvironment.map
-    }
-
-    // This is the main method where you control your bot. 10 times per game second it receives
-    // current game state. Use Api object to call actions on your units.
+    // This method is called 10 times per game second and holds current
+    // game state. Use Api object to call actions on your units.
     // - GameState reference: https://docs.liagame.com/api/#gamestate
     // - Api reference:       https://docs.liagame.com/api/#api-object
-    @Synchronized override fun processGameState(gameState: GameState, api: Api) {
+    @Synchronized override fun update(state: GameState, api: Api) {
+
+        // If you have enough resources to spawn a new warrior unit then spawn it.
+        if (state.resources >= Constants.WARRIOR_PRICE) {
+            api.spawnUnit(UnitType.WARRIOR)
+        }
 
         // We iterate through all of our units that are still alive.
-        for (unit in gameState.units) {
+        for (unit in state.units) {
 
-            // If the unit is not going anywhere, we choose a new valid point on the
-            // map and send the unit there.
+            // If the unit is not going anywhere, we send it
+            // to a random valid location on the map.
             if (unit.navigationPath.isEmpty()) {
 
-                var x: Int
-                var y: Int
-
-                // Generate new x and y until you get a position on the map where there
-                // is no obstacle.
+                // Generate new x and y until you get a position on the map
+                // where there is no obstacle. Then move the unit there.
                 while (true) {
-                    x = (Math.random() * map.size).toInt()
-                    y = (Math.random() * map[0].size).toInt()
-                    // False means that on (x,y) there is no obstacle.
-                    if (!map[x][y]) {
+                    val x = (Math.random() * Constants.MAP.size).toInt()
+                    val y = (Math.random() * Constants.MAP[0].size).toInt()
+
+                    // Map is a 2D array of booleans. If map[x][y] equals false it means that
+                    // at (x,y) there is no obstacle and we can safely move our unit there.
+                    if (!Constants.MAP[x][y]) {
+                        api.navigationStart(unit.id, x.toFloat(), y.toFloat())
                         break
                     }
                 }
-
-                // Make the unit go to the chosen x and y. Last parameter is a boolean that
-                // if set to true tells the unit to move backwards.
-                api.navigationStart(unit.id, x.toFloat(), y.toFloat(), false)
             }
 
-            // If the unit sees an opponent then make it shoot.
-            if (unit.opponentsInView.isNotEmpty()) {
-                api.shoot(unit.id)
+            // If the unit is a worker and it sees at least one resource
+            // then make it go to the first resource to collect it.
+            if (unit.type == UnitType.WORKER && unit.resourcesInView.isNotEmpty()) {
+                val resource = unit.resourcesInView[0]
+                api.navigationStart(unit.id, resource.x, resource.y)
+            }
 
-                // Don't forget to make your unit brag. :)
+            // If the unit is a warrior and it sees an opponent then start shooting
+            if (unit.type == UnitType.WARRIOR && unit.opponentsInView.isNotEmpty()) {
+                api.shoot(unit.id)
                 api.saySomething(unit.id, "I see you!")
             }
         }

@@ -11,7 +11,9 @@ data class Response(
         val shootEvents: Array<ShootEvent>,
         val navigationStartEvents: Array<NavigationStartEvent>,
         val navigationStopEvents: Array<NavigationStopEvent>,
-        val saySomethingEvents: Array<SaySomethingEvent>
+        val saySomethingEvents: Array<SaySomethingEvent>,
+        val spawnUnitEvents: Array<SpawnUnitEvent>
+
 ){
     companion object {
         val gson = GsonBuilder().create()!!
@@ -56,4 +58,9 @@ data class SaySomethingEvent(
         val index: Int,
         val unitId: Int,
         val text: String
+)
+
+data class SpawnUnitEvent(
+        val index: Int,
+        val type: UnitType
 )

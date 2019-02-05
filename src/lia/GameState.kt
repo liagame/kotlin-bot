@@ -7,7 +7,8 @@ data class GameState(
         var uid: Long,
         var type: MessageType,
         var time: Float,
-        var numberOfRemainingOpponents: Int,
+        var numberOfOpponentUnits: Int,
+        var resources: Int,
         var canSaySomething: Boolean,
         var units: Array<UnitData>
 ){
@@ -22,6 +23,7 @@ data class GameState(
 
 data class UnitData(
         var id: Int,
+        var type: UnitType,
         var health: Int,
         var x: Float,
         var y: Float,
@@ -32,6 +34,7 @@ data class UnitData(
         var nBullets: Int,
         var opponentsInView: Array<OpponentInView>,
         var opponentBulletsInView: Array<BulletInView>,
+        var resourcesInView: Array<ResourceInView>,
         var navigationPath: Array<Point>
 )
 
@@ -42,6 +45,7 @@ data class Point(
 
 data class OpponentInView(
         var id: Int,
+        var type: UnitType,
         var health: Int,
         var x: Float,
         var y: Float,
@@ -57,10 +61,19 @@ data class BulletInView(
         var velocity: Float
 )
 
+data class ResourceInView(
+        var x: Float,
+        var y: Float
+)
+
 enum class Speed {
     NONE, FORWARD, BACKWARD
 }
 
 enum class Rotation {
     NONE, LEFT, RIGHT, SLOW_LEFT, SLOW_RIGHT
+}
+
+enum class UnitType {
+    WARRIOR, WORKER
 }

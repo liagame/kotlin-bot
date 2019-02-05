@@ -17,6 +17,7 @@ public class Api {
     private ArrayList<NavigationStartEvent> navigationStartEvents;
     private ArrayList<NavigationStopEvent> navigationStopEvents;
     private ArrayList<SaySomethingEvent> saySomethingEvents;
+    private ArrayList<SpawnUnitEvent> spawnUnitEvents;
 
     protected Api() {
         speedEvents = new ArrayList<>();
@@ -25,6 +26,7 @@ public class Api {
         navigationStartEvents = new ArrayList<>();
         navigationStopEvents = new ArrayList<>();
         saySomethingEvents = new ArrayList<>();
+        spawnUnitEvents = new ArrayList<>();
     }
 
     private int getNextIndex() {
@@ -55,6 +57,10 @@ public class Api {
         navigationStartEvents.add(new NavigationStartEvent(getNextIndex(), unitId, x, y, moveBackwards));
     }
 
+    public void navigationStart(int unitId, float x, float y) {
+        navigationStartEvents.add(new NavigationStartEvent(getNextIndex(), unitId, x, y, false));
+    }
+
     /** Stop navigation */
     public void navigationStop(int unitId) {
         navigationStopEvents.add(new NavigationStopEvent(getNextIndex(), unitId));
@@ -63,6 +69,10 @@ public class Api {
     /** Make your unit say something */
     public void saySomething(int unitId, String text) {
         saySomethingEvents.add(new SaySomethingEvent(getNextIndex(), unitId, text));
+    }
+
+    public void spawnUnit(UnitType type) {
+        spawnUnitEvents.add(new SpawnUnitEvent(getNextIndex(), type));
     }
 
     protected String toJson() {
@@ -74,7 +84,8 @@ public class Api {
                 shootEvents.toArray(new ShootEvent[shootEvents.size()]),
                 navigationStartEvents.toArray(new NavigationStartEvent[navigationStartEvents.size()]),
                 navigationStopEvents.toArray(new NavigationStopEvent[navigationStopEvents.size()]),
-                saySomethingEvents.toArray(new SaySomethingEvent[saySomethingEvents.size()])
+                saySomethingEvents.toArray(new SaySomethingEvent[saySomethingEvents.size()]),
+                spawnUnitEvents.toArray(new SpawnUnitEvent[spawnUnitEvents.size()])
         );
         return Response.Companion.toJson(response);
     }

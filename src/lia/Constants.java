@@ -1,5 +1,6 @@
 package lia;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 /**
@@ -9,12 +10,17 @@ import com.google.gson.JsonObject;
  * implementation.
  */
 public class Constants {
+    /** The duration of the game in seconds. */
+    public static float GAME_DURATION;
     /** The width of the map in world units. */
     public static int MAP_WIDTH;
     /** The height of the map in world units. */
     public static int MAP_HEIGHT;
-    /** The duration of the game in seconds. */
-    public static float GAME_DURATION;
+    /** Map as a 2D array of booleans. If map[x][y] equals True that means that at (x,y)
+     * there is an obstacle. x=0, y=0 points to bottom left corner. */
+    public static boolean[][] MAP;
+    /** Approximate location where your team was spawned. */
+    public static SpawnPoint SPAWN_POINT;
     /** The diameter of the unit in world units. */
     public static float UNIT_DIAMETER;
     /** A full health of a unit when the game starts. */
@@ -48,10 +54,20 @@ public class Constants {
     public static float BULLET_DIAMETER;
     /** The speed in world units per second with which the bullet moves forward. */
     public static float BULLET_VELOCITY;
-    /** The damage that a unit receives when it is hit by a bullet. */
-    public static int BULLET_DAMAGE;
+    /** The damage that a warrior receives when it is hit by a bullet. */
+    public static int BULLET_DAMAGE_TO_WARRIOR;
+    /** The damage that a worker receives when it is hit by a bullet. */
+    public static int BULLET_DAMAGE_TO_WORKER;
     /** The range of the bullet in world units. */
     public static float BULLET_RANGE;
+    /** Price in resources for purchasing a warrior unit. */
+    public static float WARRIOR_PRICE;
+    /** Price in resources for purchasing a worker unit. */
+    public static float WORKER_PRICE;
+    /** Maximum number of units on your team. */
+    public static float MAX_NUMBER_OF_UNITS;
+    /** After how many seconds new resources stop spawning */
+    public static int STOP_SPAWNING_AFTER;
     /** The maximum duration of processing processGameEnvironment() method. */
     public static float PROCESS_GAME_ENVIRONMENT_TIMEOUT;
     /** The maximum duration of processing processGameState() method. */
@@ -77,9 +93,36 @@ public class Constants {
         VIEWING_AREA_OFFSET = constantsJson.get("VIEWING_AREA_OFFSET").getAsFloat();
         BULLET_DIAMETER = constantsJson.get("BULLET_DIAMETER").getAsFloat();
         BULLET_VELOCITY = constantsJson.get("BULLET_VELOCITY").getAsFloat();
-        BULLET_DAMAGE = constantsJson.get("BULLET_DAMAGE").getAsInt();
+        BULLET_DAMAGE_TO_WARRIOR = constantsJson.get("BULLET_DAMAGE_TO_WARRIOR").getAsInt();
+        BULLET_DAMAGE_TO_WORKER = constantsJson.get("BULLET_DAMAGE_TO_WORKER").getAsInt();
         BULLET_RANGE = constantsJson.get("BULLET_RANGE").getAsFloat();
+        WARRIOR_PRICE = constantsJson.get("WARRIOR_PRICE").getAsFloat();
+        WORKER_PRICE = constantsJson.get("WORKER_PRICE").getAsFloat();
+        MAX_NUMBER_OF_UNITS = constantsJson.get("MAX_NUMBER_OF_UNITS").getAsFloat();
         PROCESS_GAME_ENVIRONMENT_TIMEOUT = constantsJson.get("PROCESS_GAME_ENVIRONMENT_TIMEOUT").getAsFloat();
         PROCESS_GAME_STATE_TIMEOUT = constantsJson.get("PROCESS_GAME_STATE_TIMEOUT").getAsFloat();
+        STOP_SPAWNING_AFTER = constantsJson.get("STOP_SPAWNING_AFTER").getAsInt();
+        SPAWN_POINT = new SpawnPoint();
+        SPAWN_POINT.x = constantsJson.get("SPAWN_POINT").getAsJsonObject().get("x").getAsFloat();
+        SPAWN_POINT.y = constantsJson.get("SPAWN_POINT").getAsJsonObject().get("y").getAsFloat();
+
+        // Parse map
+        JsonArray mapRows = constantsJson.get("MAP").getAsJsonArray();
+        MAP = new boolean[mapRows.size()][];
+        for (int i = 0; i < mapRows.size(); i++) {
+
+            JsonArray mapColumns = mapRows.get(i).getAsJsonArray();
+            MAP[i] = new boolean[mapColumns.size()];
+
+            for (int j = 0; j < mapColumns.size(); j++) {
+                MAP[i][j] = mapColumns.get(j).getAsBoolean();
+            }
+        }
+    }
+
+    public static class SpawnPoint {
+        public float x;
+        public float y;
     }
 }
+
