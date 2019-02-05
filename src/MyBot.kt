@@ -26,14 +26,14 @@ class MyBot : Bot {
             if (unit.navigationPath.isEmpty()) {
 
                 // Generate new x and y until you get a position on the map
-                // where there is no obstacle. Then move the unit there.
+                // where there is no obstacle.
                 while (true) {
                     val x = (Math.random() * Constants.MAP.size).toInt()
                     val y = (Math.random() * Constants.MAP[0].size).toInt()
 
-                    // Map is a 2D array of booleans. If map[x][y] equals false it means that
-                    // at (x,y) there is no obstacle and we can safely move our unit there.
+                    // If map[x][y] equals false it means that at (x,y) there is no obstacle.
                     if (!Constants.MAP[x][y]) {
+                        // Send the unit to (x, y)
                         api.navigationStart(unit.id, x.toFloat(), y.toFloat())
                         break
                     }
@@ -47,7 +47,7 @@ class MyBot : Bot {
                 api.navigationStart(unit.id, resource.x, resource.y)
             }
 
-            // If the unit is a warrior and it sees an opponent then start shooting
+            // If the unit is a warrior and it sees an opponent then make it shoot.
             if (unit.type == UnitType.WARRIOR && unit.opponentsInView.isNotEmpty()) {
                 api.shoot(unit.id)
                 api.saySomething(unit.id, "I see you!")
