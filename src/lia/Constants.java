@@ -61,9 +61,9 @@ public class Constants {
     /** The range of the bullet in world units. */
     public static float BULLET_RANGE;
     /** Price in resources for purchasing a warrior unit. */
-    public static float WARRIOR_PRICE;
+    public static int WARRIOR_PRICE;
     /** Price in resources for purchasing a worker unit. */
-    public static float WORKER_PRICE;
+    public static int WORKER_PRICE;
     /** Maximum number of units on your team. */
     public static float MAX_NUMBER_OF_UNITS;
     /** After how many seconds new resources stop spawning */
@@ -96,8 +96,8 @@ public class Constants {
         BULLET_DAMAGE_TO_WARRIOR = constantsJson.get("BULLET_DAMAGE_TO_WARRIOR").getAsInt();
         BULLET_DAMAGE_TO_WORKER = constantsJson.get("BULLET_DAMAGE_TO_WORKER").getAsInt();
         BULLET_RANGE = constantsJson.get("BULLET_RANGE").getAsFloat();
-        WARRIOR_PRICE = constantsJson.get("WARRIOR_PRICE").getAsFloat();
-        WORKER_PRICE = constantsJson.get("WORKER_PRICE").getAsFloat();
+        WARRIOR_PRICE = constantsJson.get("WARRIOR_PRICE").getAsInt();
+        WORKER_PRICE = constantsJson.get("WORKER_PRICE").getAsInt();
         MAX_NUMBER_OF_UNITS = constantsJson.get("MAX_NUMBER_OF_UNITS").getAsFloat();
         FIRST_TICK_TIMEOUT = constantsJson.get("FIRST_TICK_TIMEOUT").getAsFloat();
         TICK_TIMEOUT = constantsJson.get("TICK_TIMEOUT").getAsFloat();
